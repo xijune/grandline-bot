@@ -1,0 +1,8 @@
+{
+  "name": "GrandLine Multi-Bot Dashboard",
+  "description": "Multi-bot management dashboard for GrandLine with account management, automated presets, real-time process monitoring, and log streaming.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

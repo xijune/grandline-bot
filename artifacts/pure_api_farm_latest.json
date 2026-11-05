@@ -8,7 +8,7 @@
       "error": "start",
       "status": 409,
       "data": {
-        "error": "Ce groupe n’existe pas ici",
+        "error": "Ce groupe nï¿½existe pas ici",
         "code": "CONFLIT"
       },
       "pack": "ohara-groupe-30-g55"
@@ -17,7 +17,7 @@
       "error": "start",
       "status": 409,
       "data": {
-        "error": "Ce groupe n’existe pas ici",
+        "error": "Ce groupe nï¿½existe pas ici",
         "code": "CONFLIT"
       },
       "pack": "ohara-groupe-8-g64"
@@ -26,7 +26,7 @@
       "error": "start",
       "status": 409,
       "data": {
-        "error": "Ce groupe n’existe pas ici",
+        "error": "Ce groupe nï¿½existe pas ici",
         "code": "CONFLIT"
       },
       "pack": "ohara-groupe-42-g60"
@@ -35,7 +35,7 @@
       "error": "start",
       "status": 409,
       "data": {
-        "error": "Ce groupe n’existe pas ici",
+        "error": "Ce groupe nï¿½existe pas ici",
         "code": "CONFLIT"
       },
       "pack": "ohara-groupe-43-g59"
@@ -44,7 +44,7 @@
       "error": "start",
       "status": 409,
       "data": {
-        "error": "Ce groupe n’existe pas ici",
+        "error": "Ce groupe nï¿½existe pas ici",
         "code": "CONFLIT"
       },
       "pack": "ohara-groupe-45-g47"
@@ -53,7 +53,7 @@
       "error": "start",
       "status": 409,
       "data": {
-        "error": "Ce groupe n’existe pas ici",
+        "error": "Ce groupe nï¿½existe pas ici",
         "code": "CONFLIT"
       },
       "pack": "ohara-groupe-32-g86"
@@ -62,7 +62,7 @@
       "error": "start",
       "status": 409,
       "data": {
-        "error": "Ce groupe n’existe pas ici",
+        "error": "Ce groupe nï¿½existe pas ici",
         "code": "CONFLIT"
       },
       "pack": "ohara-groupe-9-g57"
@@ -71,7 +71,7 @@
       "error": "start",
       "status": 409,
       "data": {
-        "error": "Ce groupe n’existe pas ici",
+        "error": "Ce groupe nï¿½existe pas ici",
         "code": "CONFLIT"
       },
       "pack": "ohara-groupe-17-g146"

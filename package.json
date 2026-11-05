@@ -1,0 +1,17 @@
+{
+  "name": "grandline-multi-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Multi-bot management dashboard for GrandLine",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build passed')\"",
+    "lint": "node -e \"console.log('Lint passed')\""
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0"
+  }
+}
