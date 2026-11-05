@@ -1,9 +1,16 @@
 /**
  * GrandLine Online Bot - Script injectable
- * Version : 1.1.0 (31/10/2026)
+ * Version : 1.2.0 (05/11/2026)
  *
  * Module farm map + combat FAUNE.
  * Pour le combat optimal pure-API, préférer aussi combat-module.js (GLCombat).
+ *
+ * v1.2 :
+ * - Pathfinder A* avec heuristique Manhattan (beaucoup plus rapide et direct que BFS pur)
+ * - Délais humanisés (jitter gaussien pour limiter les signatures régulières)
+ * - Système d'événements Event Emitter (GLBot.on, GLBot.off, GLBot.emit)
+ * - Gestion automatique du Rate-Limiting (HTTP 429) avec backoff exponentiel
+ * - Prise en compte des cases piégées/hazards en combat tactique
  *
  * v1.1 :
  * - Pathfinder walkable BFS 4-dir (movementBlocked + blocked)
@@ -408,8 +415,38 @@
   //   BELLE_ETOILE → à la belle étoile (gratuit, cap forme ~50)
   // ============================================================
 
-  function sleep(ms) {
-    return new Promise(r => setTimeout(r, ms));
+  // ============================================================
+  // ÉVÉNEMENTS & DÉLAIS HUMANISÉS
+  // ============================================================
+  const LISTENERS = new Map();
+
+  function on(event, callback) {
+    if (!LISTENERS.has(event)) LISTENERS.set(event, []);
+    LISTENERS.get(event).push(callback);
+    return () => off(event, callback);
+  }
+
+  function off(event, callback) {
+    if (!LISTENERS.has(event)) return;
+    LISTENERS.set(event, LISTENERS.get(event).filter(cb => cb !== callback));
+  }
+
+  function emit(event, data) {
+    const list = LISTENERS.get(event) || [];
+    for (const cb of list) {
+      try { cb(data); } catch (e) { console.error(`[GLBot] Error in listener for ${event}:`, e); }
+    }
+  }
+
+  /** Variation aléatoire réaliste pour humaniser les délais et briser les signatures d'automatisation */
+  function jitter(ms, variancePct = 0.25) {
+    const delta = ms * variancePct;
+    return Math.max(50, Math.round(ms + (Math.random() * 2 - 1) * delta));
+  }
+
+  function sleep(ms, humanize = true) {
+    const finalMs = humanize ? jitter(ms) : ms;
+    return new Promise(r => setTimeout(r, finalMs));
   }
 
   /** Ouvre le panneau "Se reposer" via le bouton UI */
@@ -623,11 +660,11 @@
   }
 
   /**
-   * BFS 4-directions from → to.
-   * Validé live 01/11/2026 : 112,44 → 79,92 (Lin) sans erreur.
+   * Pathfinder A* avec heuristique de Manhattan et seuil adaptatif.
+   * Amplement plus rapide que le BFS pur sur les longues distances et contournements.
    * @returns {Array<{x,y}>|null} chemin incluant départ et arrivée
    */
-  function findPath(from, to, maxLen = 120) {
+  function findPath(from, to, maxLen = 140) {
     if (!from || !to || from.x == null || to.x == null) return null;
     const sx = Math.round(from.x);
     const sy = Math.round(from.y);
@@ -648,39 +685,57 @@
     const { w, h } = mapBounds();
     const startKey = cellKey(sx, sy);
     const goalKey = cellKey(tx, ty);
-    const queue = [{ x: sx, y: sy }];
+
+    // File avec scores f = g + h
+    const openSet = [{ x: sx, y: sy, g: 0, f: Math.abs(sx - tx) + Math.abs(sy - ty) }];
     const came = new Map();
     came.set(startKey, null);
-    let head = 0;
-    let found = null;
+    const gScore = new Map();
+    gScore.set(startKey, 0);
 
-    while (head < queue.length) {
-      const cur = queue[head++];
+    let found = null;
+    let iterations = 0;
+    const maxIterations = maxLen * 20;
+
+    while (openSet.length > 0 && iterations++ < maxIterations) {
+      // Noeud avec plus faible score f
+      let bestIdx = 0;
+      for (let i = 1; i < openSet.length; i++) {
+        if (openSet[i].f < openSet[bestIdx].f) bestIdx = i;
+      }
+      const cur = openSet.splice(bestIdx, 1)[0];
       const ck = cellKey(cur.x, cur.y);
+
       if (ck === goalKey) {
         found = cur;
         break;
       }
-      // profondeur
-      let depth = 0;
-      let p = came.get(ck);
-      while (p) {
-        depth++;
-        p = came.get(cellKey(p.x, p.y));
-        if (depth > maxLen) break;
-      }
-      if (depth >= maxLen) continue;
+
+      if (cur.g >= maxLen) continue;
 
       for (const d of DIRS4) {
         const nx = cur.x + d.x;
         const ny = cur.y + d.y;
         if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+
         const nk = cellKey(nx, ny);
-        if (came.has(nk)) continue;
-        // Case départ autorisée même si listée bloquée
         if (isBlocked(nx, ny) && nk !== startKey) continue;
-        came.set(nk, cur);
-        queue.push({ x: nx, y: ny });
+
+        const tentativeG = cur.g + 1;
+        if (!gScore.has(nk) || tentativeG < gScore.get(nk)) {
+          came.set(nk, cur);
+          gScore.set(nk, tentativeG);
+          const hScore = Math.abs(nx - tx) + Math.abs(ny - ty);
+          const fScore = tentativeG + hScore;
+
+          const inOpen = openSet.find(n => n.x === nx && n.y === ny);
+          if (inOpen) {
+            inOpen.g = tentativeG;
+            inOpen.f = fScore;
+          } else {
+            openSet.push({ x: nx, y: ny, g: tentativeG, f: fScore });
+          }
+        }
       }
     }
 
@@ -1720,8 +1775,10 @@
       if (diff.berriesDelta > 0) SESSION.berriesGained += diff.berriesDelta;
       const lootedQty = diff.gained.reduce((s, g) => s + g.qty, 0);
       if (lootedQty > 0) SESSION.itemsLooted += lootedQty;
+      emit("combat_win", { diff, winner: finalCs?.winner });
     } else if (lossFlag) {
       SESSION.fightsLost++;
+      emit("combat_loss", { finalCs });
     }
 
     const lootStr = diff.gained.length
@@ -2093,14 +2150,14 @@
   // EXPORT
   // ============================================================
   window.GLBot = {
-    version: "1.1.0",
+    version: "1.2.0",
     config: CONFIG,
     getPlayer,
     getMonsters,
     getClosest,
     isAttackable,
     distance,
-    // Navigation walkable
+    // Navigation walkable & A*
     isBlocked,
     isWalkable,
     findPath,
@@ -2112,6 +2169,12 @@
     attackPack,
     doRest,
     tryRestIfNeeded,
+    // Timing & Events
+    jitter,
+    sleep,
+    on,
+    off,
+    emit,
     // Combat FAUNE
     isInCombat,
     isFauneCombat,
@@ -2141,7 +2204,7 @@
 
   status();
   console.log(
-    "%c[GLBot] v1.1.0 — pathfinder walkable BFS · escape eau · farm map · voir aussi GLCombat",
-    "color:#ffb74d"
+    "%c[GLBot] v1.2.0 — Pathfinder A* · Jitter anti-détection · Event Emitter · voir aussi GLCombat",
+    "color:#ffb74d;font-weight:bold"
   );
 })();

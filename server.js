@@ -53,6 +53,18 @@ function getAccount(aid) {
 }
 
 // ---------------------------------------------------------------------------
+// Global stats tracking
+// ---------------------------------------------------------------------------
+const GLOBAL_STATS = {
+  totalSessions: 0,
+  totalWins: 0,
+  totalFights: 0,
+  totalXP: 0,
+  totalBerries: 0,
+  serverStartTime: Date.now(),
+};
+
+// ---------------------------------------------------------------------------
 // Presets
 // ---------------------------------------------------------------------------
 const PRESETS = [
@@ -142,6 +154,9 @@ class ActiveBotProcess {
     this.logPath = path.join(LOG_DIR, `${pid}.log`);
     this.intervalId = null;
     this.step = 0;
+    this.xpEarned = 0;
+    this.berriesEarned = 0;
+    this.fightsWon = 0;
   }
 
   appendLog(line) {
@@ -155,10 +170,12 @@ class ActiveBotProcess {
   }
 
   start() {
-    this.appendLog(`=== Démarrage bot: ${this.name} (${this.accountLabel}) ===`);
-    this.appendLog(`Commande: ${this.command}`);
-    this.appendLog(`Authentification sur le compte [${this.accountLabel}]...`);
-    this.appendLog(`Session WebSocket connectée avec succès.`);
+    GLOBAL_STATS.totalSessions++;
+    this.appendLog(`=== DÉMARRAGE DU BOT: ${this.name.toUpperCase()} ===`);
+    this.appendLog(`[INIT] Compte cible: ${this.accountLabel}`);
+    this.appendLog(`[COMMANDE] ${this.command}`);
+    this.appendLog(`[SOCKET] Handshake initialisé. Connexion au serveur de jeu...`);
+    this.appendLog(`[INFO] Authentification réussie. Session active.`);
 
     const totalSteps = parseInt(this.params.fights || this.params.steps || this.params.farm || 5, 10);
 
@@ -173,28 +190,57 @@ class ActiveBotProcess {
       if (this.presetId === 'pure_farm') {
         const dist = Math.floor(2 + Math.random() * 8);
         const mobId = 100 + Math.floor(Math.random() * 50);
-        this.appendLog(`[Combat ${this.step}/${totalSteps}] Scan faune: pack #${mobId} détecté (distance ${dist}). Engagement...`);
-        this.appendLog(`[Combat ${this.step}/${totalSteps}] Round 1: Attaque Rapide -> Dégâts 142. Mobs restants: 0.`);
-        this.appendLog(`[Combat ${this.step}/${totalSteps}] VICTOIRE! Récompense: +180 XP, +45 Berries.`);
+        const xp = 160 + Math.floor(Math.random() * 50);
+        const berries = 35 + Math.floor(Math.random() * 20);
+        this.xpEarned += xp;
+        this.berriesEarned += berries;
+        this.fightsWon++;
+        GLOBAL_STATS.totalFights++;
+        GLOBAL_STATS.totalWins++;
+        GLOBAL_STATS.totalXP += xp;
+        GLOBAL_STATS.totalBerries += berries;
+
+        this.appendLog(`[COMBAT ${this.step}/${totalSteps}] Détection faune: Pack sauvage #${mobId} à ${dist}m.`);
+        this.appendLog(`[ACTION] Déclenchement de la technique d'engagement rapide.`);
+        this.appendLog(`[VICTOIRE] Combat remporté sans perte de PV. +${xp} XP | +${berries} Berries.`);
       } else if (this.presetId === 'headless_farm') {
-        this.appendLog(`[World] Position joueur: (${14 + this.step * 2}, ${28 + this.step}). Walkable check: OK.`);
-        this.appendLog(`[Farm ${this.step}/${totalSteps}] Pack en vue. Lancement du combat automatisé.`);
-        this.appendLog(`[Farm ${this.step}/${totalSteps}] Victoire nette! Santé restante: 96%.`);
+        const posX = 14 + this.step * 3;
+        const posY = 28 + this.step * 2;
+        const xp = 180 + Math.floor(Math.random() * 40);
+        const berries = 40 + Math.floor(Math.random() * 15);
+        this.xpEarned += xp;
+        this.berriesEarned += berries;
+        this.fightsWon++;
+        GLOBAL_STATS.totalFights++;
+        GLOBAL_STATS.totalWins++;
+        GLOBAL_STATS.totalXP += xp;
+        GLOBAL_STATS.totalBerries += berries;
+
+        this.appendLog(`[WORLD] Position: (${posX}, ${posY}) sur la carte Ohara. Pathfinding: Validé.`);
+        this.appendLog(`[FARM ${this.step}/${totalSteps}] Cible engagée. Calcul des lignes de vue.`);
+        this.appendLog(`[VICTOIRE] Pack neutralisé. +${xp} XP, +${berries} Berries.`);
       } else if (this.presetId === 'quest_loop') {
-        this.appendLog(`[Quête Étape ${this.step}/${totalSteps}] Objectif: Parler au PNJ Lucien ou valider le contrat.`);
-        this.appendLog(`[Quête Étape ${this.step}/${totalSteps}] Validation de l'étape de quête. Récompense obtenue.`);
+        const xp = 140 + Math.floor(Math.random() * 60);
+        this.xpEarned += xp;
+        GLOBAL_STATS.totalXP += xp;
+        this.appendLog(`[QUÊTE ${this.step}/${totalSteps}] Vérification objectifs en cours auprès des PNJ.`);
+        this.appendLog(`[VALIDATION] Contrat étape validée avec succès. +${xp} XP.`);
       } else if (this.presetId === 'level_loop') {
-        this.appendLog(`[Level Loop ${this.step}/${totalSteps}] Analyse progression XP. Optimisation trajectoire.`);
-        this.appendLog(`[Level Loop ${this.step}/${totalSteps}] Activité terminée avec gain maximal d'XP.`);
+        const xp = 220 + Math.floor(Math.random() * 80);
+        this.xpEarned += xp;
+        GLOBAL_STATS.totalXP += xp;
+        this.appendLog(`[LEVEL LOOP ${this.step}/${totalSteps}] Trajectoire optimisée selon la table d'XP.`);
+        this.appendLog(`[PROGRESSION] Session de farm validée. +${xp} XP reçus.`);
       } else {
-        this.appendLog(`[Test ${this.step}/${totalSteps}] Test injection JS exécuté avec succès.`);
+        this.appendLog(`[TEST ${this.step}/${totalSteps}] Injection de test exécutée avec succès.`);
       }
 
       if (this.step >= totalSteps) {
-        this.appendLog(`=== Session terminée avec succès (${this.step} actions). ===`);
+        this.appendLog(`=== MISSION TERMINÉE AVEC SUCCÈS (${this.step} étapes exécutées) ===`);
+        this.appendLog(`[BILAN] XP totale gagnée: +${this.xpEarned} | Berries: +${this.berriesEarned}`);
         this.stop(0);
       }
-    }, 3500);
+    }, 3200);
   }
 
   stop(code = 0) {
@@ -206,10 +252,10 @@ class ActiveBotProcess {
       clearInterval(this.intervalId);
       this.intervalId = null;
     }
-    this.appendLog(`[INFO] Processus ${this.name} arrêté (code: ${code}).`);
+    this.appendLog(`[STOP] Bot ${this.name} arrêté proprement (code sortie: ${code}).`);
   }
 
-  tail(n = 80) {
+  tail(n = 100) {
     if (!fs.existsSync(this.logPath)) {
       return '';
     }
@@ -236,6 +282,9 @@ class ActiveBotProcess {
       ended_at: this.endedAt,
       exit_code: this.exitCode,
       uptime_s: Math.floor((this.endedAt || now) - this.startedAt),
+      xp_earned: this.xpEarned,
+      berries_earned: this.berriesEarned,
+      fights_won: this.fightsWon,
     };
   }
 }
@@ -250,21 +299,49 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(ROOT, 'public')));
+app.use('/scripts', express.static(path.join(ROOT, 'scripts')));
 
 // Root route
 app.get(['/', '/index.html'], (req, res) => {
   res.sendFile(path.join(ROOT, 'public', 'index.html'));
 });
 
+// KPI & Stats API
+app.get('/api/stats', (req, res) => {
+  const activeBots = Array.from(PROCESSES.values()).filter(p => p.running).length;
+  const winRate = GLOBAL_STATS.totalFights > 0 
+    ? Math.round((GLOBAL_STATS.totalWins / GLOBAL_STATS.totalFights) * 100) 
+    : 100;
+  
+  res.json({
+    stats: {
+      activeBots,
+      totalProcesses: PROCESSES.size,
+      totalSessions: GLOBAL_STATS.totalSessions,
+      totalWins: GLOBAL_STATS.totalWins,
+      totalFights: GLOBAL_STATS.totalFights,
+      totalXP: GLOBAL_STATS.totalXP,
+      totalBerries: GLOBAL_STATS.totalBerries,
+      winRate,
+      serverUptimeSec: Math.floor((Date.now() - GLOBAL_STATS.serverStartTime) / 1000),
+    }
+  });
+});
+
 // Accounts API
 app.get('/api/accounts', (req, res) => {
   const accounts = loadAccounts();
-  const safe = accounts.map(a => ({
-    id: a.id,
-    label: a.label || a.email,
-    email: a.email,
-    char_id: a.char_id || '',
-  }));
+  const safe = accounts.map(a => {
+    // Check if account has an active bot
+    const isRunning = Array.from(PROCESSES.values()).some(p => p.accountId === a.id && p.running);
+    return {
+      id: a.id,
+      label: a.label || a.email,
+      email: a.email,
+      char_id: a.char_id || '',
+      status: isRunning ? 'active' : 'idle',
+    };
+  });
   res.json({ accounts: safe });
 });
 
@@ -298,6 +375,44 @@ app.delete('/api/accounts/:id', (req, res) => {
   accounts = accounts.filter(a => a.id !== aid);
   saveAccounts(accounts);
   res.json({ ok: true });
+});
+
+// Export / Import accounts
+app.get('/api/accounts/export', (req, res) => {
+  const accounts = loadAccounts();
+  // Safe export with masked passwords
+  const exportData = accounts.map(a => ({
+    label: a.label,
+    email: a.email,
+    char_id: a.char_id || '',
+  }));
+  res.setHeader('Content-Disposition', 'attachment; filename="grandline-accounts.json"');
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify(exportData, null, 2));
+});
+
+app.post('/api/accounts/import', (req, res) => {
+  const imported = req.body.accounts;
+  if (!Array.isArray(imported)) {
+    return res.status(400).json({ error: 'Format de fichier invalide' });
+  }
+
+  const accounts = loadAccounts();
+  let added = 0;
+  for (const item of imported) {
+    if (item.email) {
+      accounts.push({
+        id: crypto.randomUUID(),
+        label: item.label || item.email,
+        email: item.email,
+        password: item.password || 'imported_pwd',
+        char_id: item.char_id || '',
+      });
+      added++;
+    }
+  }
+  saveAccounts(accounts);
+  res.json({ ok: true, added });
 });
 
 // Presets API
@@ -345,6 +460,7 @@ app.get('/api/processes', (req, res) => {
   res.json({ processes: items });
 });
 
+// Stop single process
 app.post('/api/processes/:id/stop', (req, res) => {
   const proc = PROCESSES.get(req.params.id);
   if (!proc) {
@@ -354,13 +470,46 @@ app.post('/api/processes/:id/stop', (req, res) => {
   res.json({ process: proc.toDict() });
 });
 
+// Stop all processes
+app.post('/api/processes/stop-all', (req, res) => {
+  let count = 0;
+  for (const proc of PROCESSES.values()) {
+    if (proc.running) {
+      proc.stop(0);
+      count++;
+    }
+  }
+  res.json({ ok: true, stopped: count });
+});
+
+// Clear inactive processes
+app.post('/api/processes/clear-inactive', (req, res) => {
+  let cleared = 0;
+  for (const [id, proc] of Array.from(PROCESSES.entries())) {
+    if (!proc.running) {
+      PROCESSES.delete(id);
+      cleared++;
+    }
+  }
+  res.json({ ok: true, cleared });
+});
+
+// Log retrieval & download
 app.get('/api/processes/:id/log', (req, res) => {
   const proc = PROCESSES.get(req.params.id);
   if (!proc) {
     return res.status(404).json({ error: 'process not found' });
   }
-  const n = parseInt(req.query.n || '80', 10);
+  const n = parseInt(req.query.n || '100', 10);
   res.json({ log: proc.tail(n) });
+});
+
+app.get('/api/processes/:id/download-log', (req, res) => {
+  const proc = PROCESSES.get(req.params.id);
+  if (!proc || !fs.existsSync(proc.logPath)) {
+    return res.status(404).send('Fichier de log introuvable');
+  }
+  res.download(proc.logPath, `bot_${proc.id}.log`);
 });
 
 app.delete('/api/processes/:id', (req, res) => {
@@ -373,6 +522,129 @@ app.delete('/api/processes/:id', (req, res) => {
     PROCESSES.delete(pid);
   }
   res.json({ ok: true });
+});
+
+// ---------------------------------------------------------------------------
+// Game Knowledge & Data APIs
+// ---------------------------------------------------------------------------
+app.get('/api/game-data/techniques', (req, res) => {
+  const techPath = path.join(ROOT, 'docs', 'data', 'techniques.json');
+  if (!fs.existsSync(techPath)) {
+    return res.json({ techniques: [], count: 0 });
+  }
+  try {
+    const raw = fs.readFileSync(techPath, 'utf-8');
+    const data = JSON.parse(raw);
+    const aspiration = req.query.aspiration;
+    let list = data.techniques || [];
+    if (aspiration && aspiration !== 'ALL') {
+      list = list.filter(t => t.aspiration === aspiration);
+    }
+    const sample = list.slice(0, 100).map(t => ({
+      id: t.id,
+      name: t.name,
+      aspiration: t.aspiration,
+      level: t.level,
+      pa: t.pa,
+      power: t.power,
+      type: t.type,
+      description: t.description,
+    }));
+    res.json({ count: list.length, techniques: sample });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/game-data/xp', (req, res) => {
+  const xpPath = path.join(ROOT, 'docs', 'data', 'xp_knowledge.json');
+  if (!fs.existsSync(xpPath)) {
+    return res.json({});
+  }
+  try {
+    const raw = fs.readFileSync(xpPath, 'utf-8');
+    res.json(JSON.parse(raw));
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/game-data/map', (req, res) => {
+  const mapId = req.query.mapId || 'ilusia';
+  let mapPath = path.join(ROOT, 'docs', 'data', 'maps', `${mapId}_walkable.json`);
+  if (!fs.existsSync(mapPath)) {
+    mapPath = path.join(ROOT, 'docs', 'data', 'maps', 'ilusia_walkable.json');
+  }
+  if (!fs.existsSync(mapPath)) {
+    mapPath = path.join(ROOT, 'docs', 'data', 'maps', 'ohara_walkable.json');
+  }
+  if (!fs.existsSync(mapPath)) {
+    return res.json({ mapId, blocked: [] });
+  }
+  try {
+    const raw = fs.readFileSync(mapPath, 'utf-8');
+    const data = JSON.parse(raw);
+    res.json({ mapId, ...data });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/game-data/fauna', (req, res) => {
+  const mapId = req.query.mapId || 'ilusia';
+  if (mapId === 'ilusia') {
+    return res.json({
+      mapId: 'ilusia',
+      packs: [
+        { packId: "ilusia-groupe-1-g233", anchor: { x: 46, y: 34 }, mobs: [{ id: "1", espece: "chien", niveau: 1 }] },
+        { packId: "ilusia-groupe-2-g32", anchor: { x: 119, y: 44 }, mobs: [{ id: "1", espece: "vautour", niveau: 1 }, { id: "2", espece: "vautour", niveau: 2 }] },
+        { packId: "ilusia-groupe-3-g313", anchor: { x: 42, y: 52 }, mobs: [{ id: "1", espece: "rat", niveau: 1 }] },
+        { packId: "ilusia-groupe-4-g161", anchor: { x: 120, y: 72 }, mobs: [{ id: "1", espece: "loup-de-justice", niveau: 1 }, { id: "2", espece: "loup-de-justice", niveau: 3 }] },
+        { packId: "ilusia-groupe-5-g63", anchor: { x: 40, y: 76 }, mobs: [{ id: "1", espece: "mercenaire", niveau: 3 }] }
+      ]
+    });
+  }
+  return res.json({ mapId, packs: [] });
+});
+
+app.get('/api/game-data/character', (req, res) => {
+  res.json({
+    character: {
+      id: "fdbfd689-4f11-4356-8540-41c748f8716a",
+      name: "Junimini",
+      level: 1,
+      aspiration: "TIREUR",
+      vitality: 100,
+      berries: 224507,
+      bounty: 0,
+      position: { x: 103, y: 143 },
+      ship: {
+        owned: true,
+        classId: "sloop",
+        hull: 100,
+        storageCapacity: 50
+      },
+      stats: {
+        force: 10,
+        vitesse: 10,
+        resistance: 12,
+        intelligence: 10,
+        perception: 18,
+        volonte: 10,
+        endurance: 20
+      },
+      inventory: [
+        { id: "ration", name: "Ration", quantity: 6 },
+        { id: "repair-kit", name: "Kit de réparation", quantity: 1 },
+        { id: "slingshot", name: "Lance-pierre renforcé", quantity: 1 },
+        { id: "log-pose", name: "Log Pose", quantity: 1 },
+        { id: "fibre-vegetale", name: "Fibre végétale", quantity: 1 },
+        { id: "baies-sauvages", name: "Baies sauvages", quantity: 2 },
+        { id: "whetstone", name: "Pierre à aiguiser", quantity: 1 },
+        { id: "pistolet-a-barillet", name: "Pistolet à barillet", quantity: 1 }
+      ]
+    }
+  });
 });
 
 // Catch-all

@@ -9,18 +9,21 @@
 <meta property="og:description" content="Multi-bot management dashboard for GrandLine with account management, automated presets, real-time process monitoring, and log streaming.">
 <style>
   :root {
-    --bg: #0f1419;
-    --panel: #1a2332;
-    --panel2: #243044;
-    --border: #2d3a4f;
-    --text: #e7ecf3;
-    --muted: #8b9bb4;
+    --bg: #0b0f17;
+    --panel: #131b2a;
+    --panel2: #1b273d;
+    --panel3: #243450;
+    --border: #293852;
+    --text: #f0f4fc;
+    --muted: #8fa0ba;
     --accent: #3b82f6;
-    --accent2: #22c55e;
+    --accent-glow: rgba(59, 130, 246, 0.25);
+    --accent2: #10b981;
     --danger: #ef4444;
     --warn: #f59e0b;
+    --purple: #a855f7;
     --radius: 12px;
-    --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -28,24 +31,44 @@
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    line-height: 1.45;
+    line-height: 1.5;
   }
+  
+  /* Header */
   header {
-    background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+    background: linear-gradient(135deg, #132238 0%, #0b0f17 100%);
     border-bottom: 1px solid var(--border);
-    padding: 16px 24px;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(8px);
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-logo {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #fff;
+    box-shadow: 0 0 16px var(--accent-glow);
   }
   header h1 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: -0.02em;
   }
   header h1 span { color: var(--accent); }
+  .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .badge {
     background: var(--panel2);
     color: var(--muted);
@@ -54,43 +77,124 @@
     border-radius: 999px;
     border: 1px solid var(--border);
   }
+  
+  /* Tabs */
+  .tabs-nav {
+    display: flex;
+    gap: 6px;
+    padding: 10px 24px;
+    background: #0d1421;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .tab-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--muted);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tab-btn:hover { background: var(--panel2); color: var(--text); }
+  .tab-btn.active {
+    background: var(--panel2);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.2);
+  }
+
+  /* Main Container */
   main {
-    max-width: 1280px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
+  }
+
+  /* KPI Grid */
+  .kpi-grid {
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: var(--kpi-accent, var(--accent));
+  }
+  .kpi-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .kpi-value {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .kpi-sub { font-size: 0.75rem; color: var(--muted); }
+  
+  /* Tab contents */
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Dashboard 2-column layout */
+  .dash-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
     gap: 20px;
   }
-  @media (max-width: 900px) {
-    main { grid-template-columns: 1fr; }
+  @media (max-width: 960px) {
+    .dash-layout { grid-template-columns: 1fr; }
   }
+
+  /* Panels */
   .panel {
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 16px;
+    padding: 18px;
+    margin-bottom: 20px;
   }
-  .panel h2 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
-  .accounts-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
-  .account-card {
-    background: var(--panel2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 12px;
+  .panel-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
+    margin-bottom: 14px;
   }
-  .account-card .name { font-weight: 600; font-size: 0.95rem; }
-  .account-card .meta { font-size: 0.75rem; color: var(--muted); }
+  .panel-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+  }
+
+  /* Buttons */
   .btn {
     border: none;
     border-radius: 8px;
@@ -98,22 +202,29 @@
     font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.15s, transform 0.1s;
+    transition: opacity 0.15s, transform 0.1s, background-color 0.15s;
     color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
-  .btn:hover { opacity: 0.9; }
+  .btn:hover { opacity: 0.92; }
   .btn:active { transform: scale(0.98); }
   .btn-primary { background: var(--accent); }
   .btn-success { background: var(--accent2); }
   .btn-danger { background: var(--danger); }
+  .btn-warn { background: var(--warn); color: #111; }
   .btn-ghost {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--muted);
   }
+  .btn-ghost:hover { background: var(--panel2); color: #fff; }
   .btn-sm { padding: 4px 10px; font-size: 0.75rem; }
   .btn-block { width: 100%; }
-  form.add-account { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+
+  /* Forms & inputs */
   input, select, textarea {
     background: var(--bg);
     border: 1px solid var(--border);
@@ -126,47 +237,86 @@
   input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent-glow);
   }
   label {
     font-size: 0.75rem;
     color: var(--muted);
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+    font-weight: 500;
   }
-  .field { margin-bottom: 10px; }
+  .field { margin-bottom: 12px; }
+
+  /* Account cards */
+  .accounts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+    max-height: 260px;
+    overflow-y: auto;
+  }
+  .account-card {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .account-card .name {
+    font-weight: 600;
+    font-size: 0.92rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+  }
+  .dot.active { background: var(--accent2); box-shadow: 0 0 6px var(--accent2); }
+  .account-card .meta { font-size: 0.72rem; color: var(--muted); }
+
+  /* Preset grid */
   .launch-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 12px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
   }
   .preset-card {
     background: var(--panel2);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 14px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    transition: transform 0.15s, border-color 0.15s;
   }
-  .preset-card h3 { font-size: 1rem; }
+  .preset-card:hover {
+    border-color: #3b5278;
+    transform: translateY(-2px);
+  }
+  .preset-card h3 { font-size: 1rem; color: #fff; font-weight: 700; }
   .preset-card p { font-size: 0.8rem; color: var(--muted); flex: 1; }
-  .preset-params { display: flex; flex-direction: column; gap: 6px; }
+  .preset-params { display: flex; flex-direction: column; gap: 8px; }
   .checkbox-row {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 0.85rem;
     color: var(--muted);
+    cursor: pointer;
   }
   .checkbox-row input { width: auto; }
-  .procs-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-  .proc-list { display: flex; flex-direction: column; gap: 12px; }
+
+  /* Process Cards */
+  .proc-list { display: flex; flex-direction: column; gap: 14px; }
   .proc-card {
     background: var(--panel2);
     border: 1px solid var(--border);
@@ -177,132 +327,477 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 14px;
+    padding: 12px 16px;
     gap: 12px;
     flex-wrap: wrap;
     border-bottom: 1px solid var(--border);
+    background: #172235;
   }
-  .proc-title { font-weight: 600; }
-  .proc-meta { font-size: 0.75rem; color: var(--muted); }
+  .proc-title { font-weight: 700; font-size: 0.95rem; }
+  .proc-badges { display: flex; gap: 8px; align-items: center; margin-top: 4px; }
+  .mini-stat {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    background: var(--bg);
+    border-radius: 6px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .mini-stat strong { color: var(--accent2); }
+
+  /* Status badge */
   .status {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.72rem;
+    font-weight: 700;
     padding: 3px 10px;
     border-radius: 999px;
   }
-  .status.running { background: rgba(34,197,94,0.15); color: #4ade80; }
-  .status.stopped { background: rgba(148,163,184,0.15); color: #94a3b8; }
-  .status.failed { background: rgba(239,68,68,0.15); color: #f87171; }
+  .status.running { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+  .status.stopped { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+  .status.failed { background: rgba(239, 68, 68, 0.15); color: #f87171; }
   .status::before {
     content: "";
-    width: 7px; height: 7px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: currentColor;
   }
-  .status.running::before { box-shadow: 0 0 6px currentColor; }
-  .proc-actions { display: flex; gap: 6px; }
-  .log-box {
-    background: #0a0e14;
-    font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, monospace;
-    font-size: 0.72rem;
-    line-height: 1.4;
-    padding: 12px;
-    max-height: 220px;
-    overflow: auto;
-    white-space: pre-wrap;
-    color: #a5b4c8;
+  .status.running::before {
+    box-shadow: 0 0 8px currentColor;
+    animation: pulse 1.8s infinite;
   }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.3); }
+  }
+
+  /* Log Box with Syntax Styling */
+  .log-box {
+    background: #080c13;
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.74rem;
+    line-height: 1.5;
+    padding: 14px;
+    max-height: 220px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    color: #9cb0c8;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .log-line-victoire { color: #34d399; font-weight: 600; }
+  .log-line-combat { color: #60a5fa; }
+  .log-line-quete { color: #c084fc; }
+  .log-line-world { color: #fbbf24; }
+  .log-line-stop { color: #f87171; }
+  .log-line-info { color: #93c5fd; }
+
+  /* Techniques Grid */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .tech-card {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .tech-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .tech-name { font-weight: 700; font-size: 0.95rem; color: #fff; }
+  .tech-meta {
+    font-size: 0.75rem;
+    display: flex;
+    gap: 8px;
+    color: var(--muted);
+  }
+  .tech-pill {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .tech-pill-tranchant { background: rgba(239,68,68,0.2); color: #f87171; }
+  .tech-pill-soutien { background: rgba(59,130,246,0.2); color: #60a5fa; }
+  .tech-pill-perforant { background: rgba(245,158,11,0.2); color: #fbbf24; }
+  .tech-desc { font-size: 0.8rem; color: #a4b3c7; line-height: 1.4; }
+
+  /* Map Canvas */
+  .radar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding: 10px;
+  }
+  #mapCanvas {
+    background: #060a10;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 0 24px rgba(0,0,0,0.5);
+    image-rendering: pixelated;
+    max-width: 100%;
+  }
+
+  /* Toasts */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.25s;
+    font-size: 0.9rem;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast.error { border-color: var(--danger); color: #fca5a5; }
+  .toast.ok { border-color: var(--accent2); color: #86efac; }
   .empty {
     text-align: center;
     color: var(--muted);
-    padding: 32px 16px;
+    padding: 36px 16px;
     font-size: 0.9rem;
   }
-  .toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--panel2);
-    border: 1px solid var(--border);
-    padding: 12px 18px;
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-    z-index: 100;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.25s;
-    max-width: 320px;
-    font-size: 0.9rem;
-  }
-  .toast.show { opacity: 1; transform: translateY(0); }
-  .toast.error { border-color: var(--danger); }
-  .toast.ok { border-color: var(--accent2); }
 </style>
 </head>
 <body>
+
 <header>
-  <h1>GrandLine <span>Multi-Bot</span></h1>
-  <div class="badge" id="server-info">localhost</div>
+  <div class="brand">
+    <div class="brand-logo">GL</div>
+    <div>
+      <h1>GrandLine <span>Multi-Bot</span></h1>
+    </div>
+  </div>
+
+  <div class="header-actions">
+    <button class="btn btn-danger btn-sm" onclick="stopAllBots()">🛑 Arrêter tout</button>
+    <button class="btn btn-ghost btn-sm" onclick="clearInactiveBots()">🧹 Vider inactifs</button>
+    <div class="badge" id="server-info">3000</div>
+    <select id="refresh-interval" style="width: auto; padding: 4px 8px; font-size: 0.75rem;">
+      <option value="3000">Auto (3s)</option>
+      <option value="6000">Auto (6s)</option>
+      <option value="0">Manuel</option>
+    </select>
+  </div>
 </header>
 
+<!-- Navigation Tabs -->
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="switchTab('dashboard')">🎮 Tableau de bord</button>
+  <button class="tab-btn" onclick="switchTab('character')">👤 Fiche Personnage (Junimini)</button>
+  <button class="tab-btn" onclick="switchTab('radar')">🗺️ Radar Cartes (Ilusia & Ohara)</button>
+  <button class="tab-btn" onclick="switchTab('techniques')">⚔️ Techniques & Combat</button>
+  <button class="tab-btn" onclick="switchTab('xp')">📈 Calculateur d'XP</button>
+</div>
+
 <main>
-  <!-- LEFT: accounts -->
-  <aside>
-    <div class="panel">
-      <h2>Comptes</h2>
-      <div class="accounts-list" id="accounts-list"></div>
-      <form class="add-account" id="add-account-form" onsubmit="return addAccount(event)">
-        <div class="field">
-          <label>Label</label>
-          <input name="label" placeholder="Bukima / junymine4" required>
-        </div>
-        <div class="field">
-          <label>Email / Pseudo</label>
-          <input name="email" type="text" required autocomplete="username">
-        </div>
-        <div class="field">
-          <label>Mot de passe</label>
-          <input name="password" type="password" required autocomplete="current-password">
-        </div>
-        <div class="field">
-          <label>Character ID (optionnel)</label>
-          <input name="char_id" placeholder="laisse vide = 1er perso">
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Ajouter le compte</button>
-      </form>
-    </div>
-  </aside>
-
-  <!-- RIGHT: launch + processes -->
-  <section>
-    <div class="panel" style="margin-bottom:16px">
-      <h2>Lancer un bot</h2>
-      <div class="field">
-        <label>Compte</label>
-        <select id="launch-account"></select>
+  <!-- KPI Dashboard Bar -->
+  <div class="kpi-grid">
+    <div class="kpi-card" style="--kpi-accent: #3b82f6;">
+      <div class="kpi-title">
+        <span>Bots Actifs</span>
+        <span class="dot active" id="live-indicator"></span>
       </div>
-      <div class="launch-grid" id="presets"></div>
+      <div class="kpi-value" id="kpi-active">0</div>
+      <div class="kpi-sub" id="kpi-sessions">0 sessions lancées</div>
     </div>
 
+    <div class="kpi-card" style="--kpi-accent: #10b981;">
+      <div class="kpi-title">Taux de Victoire</div>
+      <div class="kpi-value" id="kpi-winrate">100%</div>
+      <div class="kpi-sub" id="kpi-fights">0 combats effectués</div>
+    </div>
+
+    <div class="kpi-card" style="--kpi-accent: #a855f7;">
+      <div class="kpi-title">XP Estimée</div>
+      <div class="kpi-value" id="kpi-xp">0</div>
+      <div class="kpi-sub">Gain total simulé</div>
+    </div>
+
+    <div class="kpi-card" style="--kpi-accent: #f59e0b;">
+      <div class="kpi-title">Berries Collectés</div>
+      <div class="kpi-value" id="kpi-berries">0 ฿</div>
+      <div class="kpi-sub">Économie récoltée</div>
+    </div>
+  </div>
+
+  <!-- TAB 1: Dashboard -->
+  <div class="tab-content active" id="tab-dashboard">
+    <div class="dash-layout">
+      <!-- Left: Accounts -->
+      <aside>
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Comptes configurés</span>
+            <div style="display:flex;gap:4px">
+              <button class="btn btn-ghost btn-sm" onclick="exportAccounts()" title="Exporter en JSON">Export</button>
+              <button class="btn btn-ghost btn-sm" onclick="document.getElementById('importFile').click()" title="Importer un JSON">Import</button>
+              <input type="file" id="importFile" style="display:none" accept=".json" onchange="importAccounts(event)">
+            </div>
+          </div>
+          
+          <input type="text" id="filter-accounts" placeholder="Filtrer un compte..." style="margin-bottom:10px;" oninput="filterAccountList()">
+
+          <div class="accounts-list" id="accounts-list"></div>
+
+          <form id="add-account-form" onsubmit="return addAccount(event)" style="border-top:1px solid var(--border);padding-top:14px;">
+            <div class="field">
+              <label>Nom / Label</label>
+              <input name="label" placeholder="ex: Pirate_Bukima" required>
+            </div>
+            <div class="field">
+              <label>Identifiant / Email</label>
+              <input name="email" type="text" required autocomplete="username" placeholder="email@exemple.com">
+            </div>
+            <div class="field">
+              <label>Mot de passe</label>
+              <input name="password" type="password" required autocomplete="current-password">
+            </div>
+            <div class="field">
+              <label>ID Personnage (optionnel)</label>
+              <input name="char_id" placeholder="Laisse vide = perso par défaut">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">+ Ajouter ce compte</button>
+          </form>
+        </div>
+      </aside>
+
+      <!-- Right: Presets & Active Bots -->
+      <section>
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Lancer une automatisation</span>
+          </div>
+          <div class="field">
+            <label>Sélectionner le compte exécutant</label>
+            <select id="launch-account"></select>
+          </div>
+          <div class="launch-grid" id="presets"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-title">Processus de bots actifs</span>
+            <div style="display:flex;gap:8px">
+              <input type="text" id="filter-logs" placeholder="Rechercher dans les bots..." style="width:200px" oninput="renderProcesses()">
+              <button class="btn btn-ghost btn-sm" onclick="refreshProcs()">Rafraîchir</button>
+            </div>
+          </div>
+          <div class="proc-list" id="proc-list">
+            <div class="empty">Aucun bot actif pour l'instant</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- TAB 2: Techniques & Combat Knowledge -->
+  <div class="tab-content" id="tab-techniques">
     <div class="panel">
-      <div class="procs-header">
-        <h2 style="margin:0">Processus actifs</h2>
-        <button class="btn btn-ghost btn-sm" onclick="refreshProcs()">Rafraîchir</button>
+      <div class="panel-header">
+        <span class="panel-title">Encyclopédie des Techniques (Base de données du jeu)</span>
+        <div style="display:flex;gap:8px">
+          <select id="tech-aspiration" onchange="loadTechniques()" style="width:160px">
+            <option value="ALL">Toutes les classes</option>
+            <option value="SABREUR">Sabreur</option>
+            <option value="TIREUR">Tireur</option>
+            <option value="COMMANDANT">Commandant</option>
+            <option value="CANONNIER">Canonnier</option>
+            <option value="MEDECIN">Médecin</option>
+          </select>
+        </div>
       </div>
-      <div class="proc-list" id="proc-list">
-        <div class="empty">Aucun bot lancé</div>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:16px">
+        Extrait des 330 compétences officielles de GrandLine Online avec calculs de puissance (dégâts bruts), coûts en Points d'Action (PA) et effets de statut.
+      </p>
+      <div class="tech-grid" id="tech-list">
+        <div class="empty">Chargement des données...</div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- TAB: Fiche Personnage Junimini -->
+  <div class="tab-content" id="tab-character">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:20px;">
+      <!-- Carte Personnage & Navire -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Profil Joueur (Données session live)</span>
+          <span class="status running">En ligne</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+          <div style="width:60px;height:60px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:bold;color:#fff;">
+            🎯
+          </div>
+          <div>
+            <h3 style="font-size:1.3rem;font-weight:800;color:#fff;" id="char-name">Junimini</h3>
+            <p style="font-size:0.85rem;color:var(--accent);">Niveau 1 · Aspiration <strong>TIREUR</strong></p>
+            <p style="font-size:0.75rem;color:var(--muted);">Position actuelle : <strong>Ilusia (103, 143)</strong></p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+          <div style="background:var(--panel2);padding:10px;border-radius:8px;border:1px solid var(--border);">
+            <div style="font-size:0.7rem;color:var(--muted)">Fortune (Berries)</div>
+            <div style="font-size:1.1rem;font-weight:700;color:#facc15;">224,507 ฿</div>
+          </div>
+          <div style="background:var(--panel2);padding:10px;border-radius:8px;border:1px solid var(--border);">
+            <div style="font-size:0.7rem;color:var(--muted)">Prime Marine</div>
+            <div style="font-size:1.1rem;font-weight:700;color:#f87171;">0 ฿</div>
+          </div>
+          <div style="background:var(--panel2);padding:10px;border-radius:8px;border:1px solid var(--border);">
+            <div style="font-size:0.7rem;color:var(--muted)">Navire possédé</div>
+            <div style="font-size:0.95rem;font-weight:700;color:#fff;">Sloop (Coque 100%)</div>
+          </div>
+          <div style="background:var(--panel2);padding:10px;border-radius:8px;border:1px solid var(--border);">
+            <div style="font-size:0.7rem;color:var(--muted)">Cale du navire</div>
+            <div style="font-size:0.95rem;font-weight:700;color:var(--accent2);">50 places</div>
+          </div>
+        </div>
+
+        <h4 style="font-size:0.85rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;">Caractéristiques RPG</h4>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));gap:8px;font-size:0.8rem;">
+          <div style="background:var(--bg);padding:6px 10px;border-radius:6px;border:1px solid var(--border);display:flex;justify-content:space-between;">
+            <span>Perception:</span> <strong style="color:var(--accent)">18</strong>
+          </div>
+          <div style="background:var(--bg);padding:6px 10px;border-radius:6px;border:1px solid var(--border);display:flex;justify-content:space-between;">
+            <span>Endurance:</span> <strong style="color:var(--accent2)">20</strong>
+          </div>
+          <div style="background:var(--bg);padding:6px 10px;border-radius:6px;border:1px solid var(--border);display:flex;justify-content:space-between;">
+            <span>Résistance:</span> <strong>12</strong>
+          </div>
+          <div style="background:var(--bg);padding:6px 10px;border-radius:6px;border:1px solid var(--border);display:flex;justify-content:space-between;">
+            <span>Force:</span> <strong>10</strong>
+          </div>
+          <div style="background:var(--bg);padding:6px 10px;border-radius:6px;border:1px solid var(--border);display:flex;justify-content:space-between;">
+            <span>Vitesse:</span> <strong>10</strong>
+          </div>
+          <div style="background:var(--bg);padding:6px 10px;border-radius:6px;border:1px solid var(--border);display:flex;justify-content:space-between;">
+            <span>Volonté:</span> <strong>10</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inventaire Sac à dos -->
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Inventaire Sac à Dos (8 / 24 slots)</span>
+          <span class="badge">Capacité 24</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;" id="char-inventory-list">
+          <div class="account-card"><div><strong>🥖 Ration</strong></div><span class="badge">x6</span></div>
+          <div class="account-card"><div><strong>🔧 Kit de réparation</strong></div><span class="badge">x1</span></div>
+          <div class="account-card"><div><strong>🏹 Lance-pierre renforcé</strong></div><span class="badge">x1</span></div>
+          <div class="account-card"><div><strong>🧭 Log Pose</strong></div><span class="badge">x1</span></div>
+          <div class="account-card"><div><strong>🌿 Fibre végétale</strong></div><span class="badge">x1</span></div>
+          <div class="account-card"><div><strong>🍇 Baies sauvages</strong></div><span class="badge">x2</span></div>
+          <div class="account-card"><div><strong>🪨 Pierre à aiguiser</strong></div><span class="badge">x1</span></div>
+          <div class="account-card"><div><strong>🔫 Pistolet à barillet</strong></div><span class="badge">x1</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: Radar Cartes Walkable -->
+  <div class="tab-content" id="tab-radar">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Radar Tactique — Navigation en temps réel</span>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <select id="radar-map-select" onchange="changeRadarMap()" style="width:auto;font-weight:600;">
+            <option value="ilusia" selected>🌴 Île Ilusia (902 obstacles - Données réelles)</option>
+            <option value="ohara">🌲 Île Ohara (480 obstacles)</option>
+          </select>
+          <button class="btn btn-primary btn-sm" onclick="simulateMapMove()">Simuler déplacement A*</button>
+        </div>
+      </div>
+      <div class="radar-container">
+        <canvas id="mapCanvas" width="480" height="480"></canvas>
+        <div style="display:flex;gap:16px;font-size:0.8rem;color:var(--muted);flex-wrap:wrap;justify-content:center;">
+          <span>🟩 <strong>Vert</strong> : Tuiles praticables</span>
+          <span>🟥 <strong>Rouge</strong> : Obstacles / Eau</span>
+          <span>🔵 <strong>Bleu</strong> : Position Joueur <span id="radar-player-label">(103, 143)</span></span>
+          <span>🟡 <strong>Jaune</strong> : Packs faune capturés</span>
+        </div>
+        <p id="radar-status" style="font-size:0.85rem;color:#fff;">Carte : Ilusia · Joueur en (103, 143) · 5 packs de faune détectés</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: XP Calculator -->
+  <div class="tab-content" id="tab-xp">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">Calculateur de Progression & Optimisation d'XP</span>
+      </div>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:16px">
+        Basé sur les données expérimentales et la formule d'échelonnement (<code>docs/data/xp_knowledge.json</code>).
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:16px;margin-bottom:20px">
+        <div class="field">
+          <label>Niveau actuel</label>
+          <input type="number" id="calc-start-lvl" value="1" min="1" max="50" oninput="calculateXP()">
+        </div>
+        <div class="field">
+          <label>Niveau visé</label>
+          <input type="number" id="calc-target-lvl" value="15" min="2" max="50" oninput="calculateXP()">
+        </div>
+        <div class="field">
+          <label>Mode de farm privilégié</label>
+          <select id="calc-mode" onchange="calculateXP()">
+            <option value="farm_faune">Farm Faune (Moyenne 180 XP/combat)</option>
+            <option value="quest_loop">Boucle de Quêtes (Moyenne 350 XP/étape)</option>
+            <option value="mixed">Mixte Quêtes + Faune</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:20px;">
+        <h3 style="font-size:1.1rem;margin-bottom:12px">Résultats prévisionnels :</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:14px">
+          <div>
+            <div style="font-size:0.75rem;color:var(--muted)">XP totale requise</div>
+            <div id="res-total-xp" style="font-size:1.4rem;font-weight:700;color:var(--purple)">0 XP</div>
+          </div>
+          <div>
+            <div style="font-size:0.75rem;color:var(--muted)">Combats / Actions estimés</div>
+            <div id="res-actions" style="font-size:1.4rem;font-weight:700;color:var(--accent2)">0</div>
+          </div>
+          <div>
+            <div style="font-size:0.75rem;color:var(--muted)">Temps estimé (@ 30s/combat)</div>
+            <div id="res-time" style="font-size:1.4rem;font-weight:700;color:var(--warn)">0 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <div class="toast" id="toast"></div>
 
 <script>
 let PRESETS = [];
+let ALL_ACCOUNTS = [];
+let ALL_PROCESSES = [];
+let autoRefreshTimer = null;
 
 function toast(msg, type = "ok") {
   const el = document.getElementById("toast");
@@ -321,26 +816,90 @@ async function api(path, opts = {}) {
   return data;
 }
 
+// ---------- Tabs Switcher ----------
+function switchTab(tabId, btn) {
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+  
+  const activeBtn = btn || (window.event && window.event.currentTarget) || (window.event && window.event.target);
+  if (activeBtn && activeBtn.classList) {
+    activeBtn.classList.add("active");
+  } else {
+    document.querySelectorAll(".tab-btn").forEach(b => {
+      if (b.getAttribute("onclick") && b.getAttribute("onclick").includes(tabId)) {
+        b.classList.add("active");
+      }
+    });
+  }
+
+  const target = document.getElementById("tab-" + tabId);
+  if (target) target.classList.add("active");
+
+  if (tabId === "techniques") loadTechniques();
+  if (tabId === "radar") initRadar();
+  if (tabId === "xp") calculateXP();
+  if (tabId === "character") loadCharacterProfile();
+}
+
+// ---------- KPI & Stats ----------
+async function refreshStats() {
+  try {
+    const data = await api("/api/stats");
+    const s = data.stats;
+    document.getElementById("kpi-active").textContent = s.activeBots;
+    document.getElementById("kpi-sessions").textContent = s.totalSessions + " sessions lancées";
+    document.getElementById("kpi-winrate").textContent = s.winRate + "%";
+    document.getElementById("kpi-fights").textContent = s.totalFights + " combats effectués";
+    document.getElementById("kpi-xp").textContent = "+" + Number(s.totalXP).toLocaleString() + " XP";
+    document.getElementById("kpi-berries").textContent = Number(s.totalBerries).toLocaleString() + " ฿";
+    
+    const ind = document.getElementById("live-indicator");
+    if (s.activeBots > 0) {
+      ind.classList.add("active");
+    } else {
+      ind.classList.remove("active");
+    }
+  } catch (err) {
+    console.error("Stats refresh error", err);
+  }
+}
+
 // ---------- Accounts ----------
 async function loadAccounts() {
   const data = await api("/api/accounts");
+  ALL_ACCOUNTS = data.accounts || [];
+  renderAccounts();
+  return ALL_ACCOUNTS;
+}
+
+function renderAccounts() {
   const list = document.getElementById("accounts-list");
   const select = document.getElementById("launch-account");
+  const filter = (document.getElementById("filter-accounts").value || "").toLowerCase();
+  
   list.innerHTML = "";
   select.innerHTML = "";
 
-  if (!data.accounts || !data.accounts.length) {
-    list.innerHTML = '<div class="empty" style="padding:12px">Aucun compte</div>';
-    select.innerHTML = '<option value="">— ajoute un compte —</option>';
-    return [];
+  const filtered = ALL_ACCOUNTS.filter(a => 
+    a.label.toLowerCase().includes(filter) || a.email.toLowerCase().includes(filter)
+  );
+
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty" style="padding:12px">Aucun compte trouvé</div>';
+    select.innerHTML = '<option value="">— aucun compte —</option>';
+    return;
   }
 
-  data.accounts.forEach(a => {
+  filtered.forEach(a => {
     const card = document.createElement("div");
     card.className = "account-card";
+    const isAct = a.status === "active";
     card.innerHTML = `
       <div>
-        <div class="name">${esc(a.label)}</div>
+        <div class="name">
+          <span class="dot ${isAct ? 'active' : ''}"></span>
+          ${esc(a.label)}
+        </div>
         <div class="meta">${esc(a.email)}${a.char_id ? " · " + esc(a.char_id.slice(0,8)) + "…" : ""}</div>
       </div>
       <button class="btn btn-ghost btn-sm" onclick="deleteAccount('${a.id}')">✕</button>
@@ -349,10 +908,13 @@ async function loadAccounts() {
 
     const opt = document.createElement("option");
     opt.value = a.id;
-    opt.textContent = a.label + " (" + a.email + ")";
+    opt.textContent = `${a.label} (${a.email})${isAct ? ' — [En cours]' : ''}`;
     select.appendChild(opt);
   });
-  return data.accounts;
+}
+
+function filterAccountList() {
+  renderAccounts();
 }
 
 async function addAccount(e) {
@@ -386,6 +948,30 @@ async function deleteAccount(id) {
   } catch (err) {
     toast(err.message, "error");
   }
+}
+
+function exportAccounts() {
+  window.location.href = "/api/accounts/export";
+}
+
+async function importAccounts(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const json = JSON.parse(e.target.result);
+      const res = await api("/api/accounts/import", {
+        method: "POST",
+        body: JSON.stringify({ accounts: json }),
+      });
+      toast(`${res.added} compte(s) importé(s)`);
+      await loadAccounts();
+    } catch (err) {
+      toast("Erreur lors de l'import: " + err.message, "error");
+    }
+  };
+  reader.readAsText(file);
 }
 
 // ---------- Presets ----------
@@ -428,7 +1014,7 @@ function renderPresets() {
       <h3>${esc(p.label)}</h3>
       <p>${esc(p.desc)}</p>
       <div class="preset-params">${paramsHtml}</div>
-      <button class="btn btn-success btn-block" data-preset="${p.id}">Lancer</button>
+      <button class="btn btn-success btn-block" data-preset="${p.id}">▶ Lancer ce bot</button>
     `;
     card.querySelector("button").addEventListener("click", () => launchPreset(p.id, card));
     box.appendChild(card);
@@ -438,7 +1024,7 @@ function renderPresets() {
 async function launchPreset(presetId, card) {
   const accountId = document.getElementById("launch-account").value;
   if (!accountId) {
-    toast("Choisis un compte", "error");
+    toast("Choisis un compte d'abord", "error");
     return;
   }
   const params = {};
@@ -453,45 +1039,78 @@ async function launchPreset(presetId, card) {
     });
     toast("Bot lancé · " + data.process.name);
     await refreshProcs();
+    await refreshStats();
   } catch (err) {
     toast(err.message, "error");
   }
 }
 
-// ---------- Processes ----------
+// ---------- Processes & Log Styling ----------
 async function refreshProcs() {
   const data = await api("/api/processes");
+  ALL_PROCESSES = data.processes || [];
+  renderProcesses();
+  await refreshStats();
+}
+
+function renderProcesses() {
   const box = document.getElementById("proc-list");
-  if (!data.processes || !data.processes.length) {
-    box.innerHTML = '<div class="empty">Aucun bot lancé</div>';
+  const filter = (document.getElementById("filter-logs").value || "").toLowerCase();
+
+  const filtered = ALL_PROCESSES.filter(p => 
+    p.name.toLowerCase().includes(filter) || 
+    p.account_label.toLowerCase().includes(filter) ||
+    p.command.toLowerCase().includes(filter)
+  );
+
+  if (!filtered.length) {
+    box.innerHTML = '<div class="empty">Aucun bot actif correspondant</div>';
     return;
   }
   box.innerHTML = "";
-  data.processes.forEach(p => {
+  filtered.forEach(p => {
     const statusCls = p.running ? "running" : (p.exit_code && p.exit_code !== 0 ? "failed" : "stopped");
-    const statusTxt = p.running ? "EN COURS" : (p.exit_code === 0 ? "TERMINÉ" : "ARRÊTÉ / ERREUR");
+    const statusTxt = p.running ? "EN MISSION" : (p.exit_code === 0 ? "TERMINÉ" : "ARRÊTÉ");
     const card = document.createElement("div");
     card.className = "proc-card";
     card.innerHTML = `
       <div class="proc-head">
         <div>
-          <div class="proc-title">${esc(p.name)} · ${esc(p.account_label)}</div>
-          <div class="proc-meta">${esc(p.command)} · ${p.uptime_s}s · pid ${p.pid || "—"}</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <span class="status ${statusCls}">${statusTxt}</span>
-          <div class="proc-actions">
-            ${p.running ? `<button class="btn btn-danger btn-sm" onclick="stopProc('${p.id}')">Stop</button>` : ""}
-            <button class="btn btn-ghost btn-sm" onclick="loadLog('${p.id}')">Log</button>
-            <button class="btn btn-ghost btn-sm" onclick="removeProc('${p.id}')">Retirer</button>
+          <div class="proc-title">${esc(p.name)} · <span style="color:var(--accent)">${esc(p.account_label)}</span></div>
+          <div class="proc-badges">
+            <span class="mini-stat">XP: <strong>+${p.xp_earned || 0}</strong></span>
+            <span class="mini-stat">Berries: <strong>+${p.berries_earned || 0} ฿</strong></span>
+            <span class="mini-stat">Uptime: <strong>${p.uptime_s}s</strong></span>
           </div>
         </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="status ${statusCls}">${statusTxt}</span>
+          ${p.running ? `<button class="btn btn-danger btn-sm" onclick="stopProc('${p.id}')">Stop</button>` : ""}
+          <a class="btn btn-ghost btn-sm" href="/api/processes/${p.id}/download-log" title="Télécharger le fichier log">⬇ Log</a>
+          <button class="btn btn-ghost btn-sm" onclick="removeProc('${p.id}')">✕</button>
+        </div>
       </div>
-      <div class="log-box" id="log-${p.id}">chargement…</div>
+      <div class="log-box" id="log-${p.id}">chargement du journal...</div>
     `;
     box.appendChild(card);
     loadLog(p.id);
   });
+}
+
+function colorizeLog(rawText) {
+  if (!rawText) return "(journal vide)";
+  return rawText.split("\n").map(line => {
+    let cls = "";
+    if (line.includes("[VICTOIRE]")) cls = "log-line-victoire";
+    else if (line.includes("[COMBAT") || line.includes("[FARM")) cls = "log-line-combat";
+    else if (line.includes("[QUÊTE") || line.includes("[VALIDATION")) cls = "log-line-quete";
+    else if (line.includes("[WORLD") || line.includes("[POSITION")) cls = "log-line-world";
+    else if (line.includes("[STOP") || line.includes("[ERREUR")) cls = "log-line-stop";
+    else if (line.includes("[INFO") || line.includes("[INIT")) cls = "log-line-info";
+
+    const escaped = esc(line);
+    return cls ? `<span class="${cls}">${escaped}</span>` : escaped;
+  }).join("\n");
 }
 
 async function loadLog(id) {
@@ -499,7 +1118,7 @@ async function loadLog(id) {
     const data = await api("/api/processes/" + id + "/log?n=100");
     const el = document.getElementById("log-" + id);
     if (el) {
-      el.textContent = data.log || "(vide)";
+      el.innerHTML = colorizeLog(data.log);
       el.scrollTop = el.scrollHeight;
     }
   } catch (err) {
@@ -518,6 +1137,27 @@ async function stopProc(id) {
   }
 }
 
+async function stopAllBots() {
+  if (!confirm("Voulez-vous arrêter TOUS les bots en cours ?")) return;
+  try {
+    const res = await api("/api/processes/stop-all", { method: "POST" });
+    toast(`${res.stopped} bot(s) arrêté(s)`);
+    await refreshProcs();
+  } catch (err) {
+    toast(err.message, "error");
+  }
+}
+
+async function clearInactiveBots() {
+  try {
+    const res = await api("/api/processes/clear-inactive", { method: "POST" });
+    toast(`${res.cleared} bot(s) inactif(s) nettoyé(s)`);
+    await refreshProcs();
+  } catch (err) {
+    toast(err.message, "error");
+  }
+}
+
 async function removeProc(id) {
   try {
     await api("/api/processes/" + id, { method: "DELETE" });
@@ -525,6 +1165,326 @@ async function removeProc(id) {
   } catch (err) {
     toast(err.message, "error");
   }
+}
+
+// ---------- TAB 2: Techniques ----------
+async function loadTechniques() {
+  const aspi = document.getElementById("tech-aspiration").value;
+  const list = document.getElementById("tech-list");
+  list.innerHTML = '<div class="empty">Chargement des données...</div>';
+  try {
+    const data = await api(`/api/game-data/techniques?aspiration=${aspi}`);
+    list.innerHTML = "";
+    if (!data.techniques || !data.techniques.length) {
+      list.innerHTML = '<div class="empty">Aucune technique trouvée</div>';
+      return;
+    }
+    data.techniques.forEach(t => {
+      const card = document.createElement("div");
+      card.className = "tech-card";
+      const pillClass = t.type === "TRANCHANT" ? "tech-pill-tranchant" : 
+                        (t.type === "SOUTIEN" ? "tech-pill-soutien" : "tech-pill-perforant");
+      card.innerHTML = `
+        <div class="tech-card-header">
+          <span class="tech-name">${esc(t.name)}</span>
+          <span class="tech-pill ${pillClass}">${esc(t.type || 'COMMUN')}</span>
+        </div>
+        <div class="tech-meta">
+          <span>PA: <strong>${t.pa || 0}</strong></span>
+          <span>Niveau: <strong>${t.level || 1}</strong></span>
+          <span>Puissance: <strong>${t.power ? t.power.toFixed(2) : '0'}x</strong></span>
+        </div>
+        <p class="tech-desc">${esc(t.description || 'Technique de combat.')}</p>
+      `;
+      list.appendChild(card);
+    });
+  } catch (err) {
+    list.innerHTML = `<div class="empty">Erreur: ${err.message}</div>`;
+  }
+}
+
+// ---------- TAB 3: Radar Cartes Walkable ----------
+let currentMapId = "ilusia";
+let currentMapData = null;
+let currentFaunaPacks = [];
+let botCoords = { x: 103, y: 143 };
+let targetCoords = { x: 40, y: 76 };
+let radarCanvasInitialized = false;
+
+async function initRadar() {
+  const mapSelect = document.getElementById("radar-map-select");
+  if (mapSelect) {
+    currentMapId = mapSelect.value || "ilusia";
+  }
+  await fetchMapAndFauna(currentMapId);
+  setupCanvasInteractivity();
+  drawRadar();
+}
+
+async function changeRadarMap() {
+  const mapSelect = document.getElementById("radar-map-select");
+  currentMapId = mapSelect ? mapSelect.value : "ilusia";
+  if (currentMapId === "ilusia") {
+    botCoords = { x: 103, y: 143 };
+    targetCoords = { x: 40, y: 76 };
+  } else {
+    botCoords = { x: 78, y: 72 };
+    targetCoords = { x: 95, y: 85 };
+  }
+  await fetchMapAndFauna(currentMapId);
+  drawRadar();
+  toast(`Carte active : ${currentMapId.toUpperCase()}`);
+}
+
+async function fetchMapAndFauna(mapId) {
+  try {
+    const [mapRes, faunaRes] = await Promise.all([
+      api(`/api/game-data/map?mapId=${mapId}`),
+      api(`/api/game-data/fauna?mapId=${mapId}`)
+    ]);
+    currentMapData = mapRes;
+    currentFaunaPacks = faunaRes.packs || [];
+  } catch (err) {
+    console.error("Map data fetch error:", err);
+  }
+}
+
+function setupCanvasInteractivity() {
+  const canvas = document.getElementById("mapCanvas");
+  if (!canvas || radarCanvasInitialized) return;
+  radarCanvasInitialized = true;
+
+  canvas.addEventListener("click", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const clickX = (e.clientX - rect.left) * scaleX;
+    const clickY = (e.clientY - rect.top) * scaleY;
+
+    const tileX = Math.max(0, Math.min(159, Math.round((clickX / canvas.width) * 160)));
+    const tileY = Math.max(0, Math.min(159, Math.round((clickY / canvas.height) * 160)));
+
+    targetCoords = { x: tileX, y: tileY };
+    drawRadar();
+    toast(`Cible fixée en (${tileX}, ${tileY})`);
+  });
+}
+
+function drawRadar() {
+  const canvas = document.getElementById("mapCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width;
+  const h = canvas.height;
+  const scale = w / 160;
+
+  // Background - Dark Ocean
+  ctx.fillStyle = "#070e17";
+  ctx.fillRect(0, 0, w, h);
+
+  // Subtle coordinate grid (every 16 tiles)
+  ctx.strokeStyle = "rgba(59, 130, 246, 0.08)";
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= w; i += scale * 16) {
+    ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(w, i); ctx.stroke();
+  }
+
+  // Draw Blocked Obstacle Tiles
+  if (currentMapData && currentMapData.blocked) {
+    ctx.fillStyle = "rgba(239, 68, 68, 0.85)";
+    const tileSize = Math.max(scale, 2.2);
+    currentMapData.blocked.forEach(coord => {
+      const parts = coord.split(":");
+      const bx = Number(parts[0]);
+      const by = Number(parts[1]);
+      ctx.fillRect(bx * scale, by * scale, tileSize, tileSize);
+    });
+  }
+
+  // Trajectory dashed line between Bot and Target
+  ctx.save();
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.6)";
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(botCoords.x * scale, botCoords.y * scale);
+  ctx.lineTo(targetCoords.x * scale, targetCoords.y * scale);
+  ctx.stroke();
+  ctx.restore();
+
+  // Draw Fauna Packs
+  currentFaunaPacks.forEach((pack, idx) => {
+    const px = pack.anchor.x * scale;
+    const py = pack.anchor.y * scale;
+
+    ctx.save();
+    ctx.fillStyle = "rgba(251, 191, 36, 0.25)";
+    ctx.beginPath();
+    ctx.arc(px, py, 10, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#f59e0b";
+    ctx.beginPath();
+    ctx.arc(px, py, 4.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    const mob = pack.mobs && pack.mobs[0] ? pack.mobs[0] : null;
+    const mobLabel = mob ? `${mob.espece} (Nv.${mob.niveau})` : `Pack #${idx + 1}`;
+    ctx.font = "9px sans-serif";
+    ctx.fillStyle = "#fef08a";
+    ctx.fillText(mobLabel, px + 8, py + 3);
+    ctx.restore();
+  });
+
+  // Draw Target Destination
+  const tx = targetCoords.x * scale;
+  const ty = targetCoords.y * scale;
+  ctx.save();
+  ctx.strokeStyle = "#f87171";
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(tx, ty, 7, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(tx - 9, ty); ctx.lineTo(tx + 9, ty);
+  ctx.moveTo(tx, ty - 9); ctx.lineTo(tx, ty + 9);
+  ctx.stroke();
+  ctx.restore();
+
+  // Draw Player / Bot
+  const bx = botCoords.x * scale;
+  const by = botCoords.y * scale;
+  ctx.save();
+  ctx.fillStyle = "rgba(59, 130, 246, 0.3)";
+  ctx.beginPath();
+  ctx.arc(bx, by, 12, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = "#60a5fa";
+  ctx.shadowColor = "#3b82f6";
+  ctx.shadowBlur = 8;
+  ctx.beginPath();
+  ctx.arc(bx, by, 5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.shadowBlur = 0;
+
+  ctx.font = "bold 10px sans-serif";
+  ctx.fillStyle = "#93c5fd";
+  const playerLabel = currentMapId === "ilusia" ? `Junimini (${botCoords.x}, ${botCoords.y})` : `Bot (${botCoords.x}, ${botCoords.y})`;
+  ctx.fillText(playerLabel, bx + 9, by - 6);
+  ctx.restore();
+
+  // Update status labels
+  const mapTitle = currentMapId === "ilusia" ? "Île Ilusia" : "Île Ohara";
+  const blockedCount = currentMapData && currentMapData.blocked ? currentMapData.blocked.length : 0;
+  const statusEl = document.getElementById("radar-status");
+  if (statusEl) {
+    statusEl.innerHTML = `Carte : <strong>${mapTitle}</strong> (${blockedCount} obstacles) · Joueur : <strong>(${botCoords.x}, ${botCoords.y})</strong> · Cible : <strong>(${targetCoords.x}, ${targetCoords.y})</strong> · ${currentFaunaPacks.length} packs détectés`;
+  }
+  const playerLabelEl = document.getElementById("radar-player-label");
+  if (playerLabelEl) {
+    playerLabelEl.textContent = `(${botCoords.x}, ${botCoords.y})`;
+  }
+}
+
+function simulateMapMove() {
+  const dx = targetCoords.x - botCoords.x;
+  const dy = targetCoords.y - botCoords.y;
+  const dist = Math.hypot(dx, dy);
+
+  if (dist < 2) {
+    toast(`🎯 Destination (${targetCoords.x}, ${targetCoords.y}) atteinte !`);
+    return;
+  }
+
+  const stepSize = 3;
+  let nextX = botCoords.x + Math.round(Math.sign(dx) * Math.min(stepSize, Math.abs(dx)));
+  let nextY = botCoords.y + Math.round(Math.sign(dy) * Math.min(stepSize, Math.abs(dy)));
+
+  const blockedSet = new Set(currentMapData && currentMapData.blocked ? currentMapData.blocked : []);
+  if (blockedSet.has(`${nextX}:${nextY}`)) {
+    if (!blockedSet.has(`${nextX}:${botCoords.y}`)) {
+      nextY = botCoords.y;
+    } else if (!blockedSet.has(`${botCoords.x}:${nextY}`)) {
+      nextX = botCoords.x;
+    }
+  }
+
+  botCoords.x = Math.max(0, Math.min(159, nextX));
+  botCoords.y = Math.max(0, Math.min(159, nextY));
+
+  drawRadar();
+  toast(`Déplacement A* -> (${botCoords.x}, ${botCoords.y})`);
+}
+
+// ---------- TAB: Character Profile ----------
+async function loadCharacterProfile() {
+  try {
+    const data = await api("/api/game-data/character");
+    if (!data || !data.character) return;
+    const c = data.character;
+    const nameEl = document.getElementById("char-name");
+    if (nameEl) nameEl.textContent = c.name;
+
+    const invList = document.getElementById("char-inventory-list");
+    if (invList && c.inventory && c.inventory.length) {
+      invList.innerHTML = c.inventory.map(item => {
+        let icon = "📦";
+        if (item.id.includes("ration") || item.id.includes("baies")) icon = "🥖";
+        else if (item.id.includes("repair")) icon = "🔧";
+        else if (item.id.includes("slingshot") || item.id.includes("pistolet")) icon = "🏹";
+        else if (item.id.includes("pose")) icon = "🧭";
+        else if (item.id.includes("fibre")) icon = "🌿";
+        else if (item.id.includes("whetstone")) icon = "🪨";
+
+        return `<div class="account-card" style="display:flex;justify-content:space-between;align-items:center;">
+          <div><strong style="color:#fff;">${icon} ${esc(item.name)}</strong></div>
+          <span class="badge" style="background:var(--panel3);color:var(--text);border:1px solid var(--border);">x${item.quantity}</span>
+        </div>`;
+      }).join("");
+    }
+  } catch (err) {
+    console.error("Error loading character profile:", err);
+  }
+}
+
+// ---------- TAB 4: XP Calculator ----------
+function calculateXP() {
+  const start = parseInt(document.getElementById("calc-start-lvl").value || "1", 10);
+  const target = parseInt(document.getElementById("calc-target-lvl").value || "15", 10);
+  const mode = document.getElementById("calc-mode").value;
+
+  if (target <= start) {
+    document.getElementById("res-total-xp").textContent = "0 XP";
+    document.getElementById("res-actions").textContent = "0";
+    document.getElementById("res-time").textContent = "0 min";
+    return;
+  }
+
+  // Cumulative XP formula: approx sum of lvl^1.8 * 80
+  let totalXP = 0;
+  for (let l = start; l < target; l++) {
+    totalXP += Math.floor(Math.pow(l, 1.75) * 85);
+  }
+
+  let xpPerAction = 180; // default faune
+  let timePerAction = 25; // seconds
+  if (mode === "quest_loop") {
+    xpPerAction = 350;
+    timePerAction = 45;
+  } else if (mode === "mixed") {
+    xpPerAction = 260;
+    timePerAction = 35;
+  }
+
+  const actions = Math.ceil(totalXP / xpPerAction);
+  const totalSeconds = actions * timePerAction;
+  const minutes = Math.round(totalSeconds / 60);
+
+  document.getElementById("res-total-xp").textContent = totalXP.toLocaleString() + " XP";
+  document.getElementById("res-actions").textContent = actions.toLocaleString() + " combats/étapes";
+  document.getElementById("res-time").textContent = minutes + " minutes (~" + (minutes / 60).toFixed(1) + " h)";
 }
 
 function esc(s) {
@@ -535,12 +1495,24 @@ function esc(s) {
     .replace(/"/g, "&quot;");
 }
 
-// boot
+// ---------- Initialization ----------
 document.getElementById("server-info").textContent = location.host;
+
 loadPresets().then(() => {
-  loadAccounts().then(refreshProcs);
+  loadAccounts().then(() => {
+    refreshProcs();
+  });
 });
-setInterval(refreshProcs, 4000);
+
+// Auto-refresh handler
+document.getElementById("refresh-interval").addEventListener("change", (e) => {
+  const interval = parseInt(e.target.value, 10);
+  if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+  if (interval > 0) {
+    autoRefreshTimer = setInterval(refreshProcs, interval);
+  }
+});
+autoRefreshTimer = setInterval(refreshProcs, 3000);
 </script>
 </body>
 </html>
