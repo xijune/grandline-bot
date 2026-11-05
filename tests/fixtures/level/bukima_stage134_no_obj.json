@@ -1,0 +1,21 @@
+{
+  "meta": {"captured": "2026-11-02", "note": "after pw2-lucien"},
+  "character": {
+    "level": 11,
+    "xp": 5623,
+    "currentHp": 338,
+    "maxHp": 529,
+    "mapId": "ohara",
+    "x": 116,
+    "y": 116,
+    "campaign": {"stage": 134, "dernier": "pw2-lucien", "accomplies": 15, "parcours": "west"},
+    "discoveredLocations": ["ilusia", "ohara", "toroa"],
+    "tachesDuJour": {
+      "ids": ["recoltes", "betes", "combats"],
+      "reclamees": ["betes", "combats"]
+    }
+  },
+  "objectives": [],
+  "daily": {"claimedToday": true},
+  "expected_plan": {"type": "travel", "islandId": "toroa"}
+}

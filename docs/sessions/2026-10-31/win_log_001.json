@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-31",
+  "result": "WIN",
+  "winner": "ALLIE",
+  "enemy": "Rat des chantiers",
+  "enemyMaxHp": 106,
+  "playerHpEnd": 184,
+  "turns": 4,
+  "hits": 2,
+  "sequence": [
+    "T1 move → dist 7",
+    "T2 end-turn (PM=0)",
+    "T3 Tir précis dist4 est~44 → enemy 62 HP",
+    "T4 Tir précism dist4 est~44 → enemy 0 HP WIN"
+  ],
+  "key_finding": "ATTAQUE de base = range 1 serveur même pour TIREUR. Techniques (tir-1 range 6) OK. characterId obligatoire dans action payload."
+}

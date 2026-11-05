@@ -1,0 +1,22 @@
+[
+  {
+    "step": 1,
+    "level": 11,
+    "xp": 5623,
+    "map": "ohara",
+    "campaign": {
+      "stage": 134,
+      "flags": {},
+      "parcours": "west",
+      "accomplies": 15,
+      "dernier": "pw2-lucien"
+    },
+    "n_obj": 0,
+    "n_packs": 24,
+    "action": {
+      "type": "travel",
+      "islandId": "toroa",
+      "reason": "no local objectives; unlock content on toroa"
+    }
+  }
+]

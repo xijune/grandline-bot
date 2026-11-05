@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-31",
+  "result": "WIN_MULTI",
+  "winner": "ALLIE",
+  "enemies": [
+    {
+      "name": "Vautour des cactus 1",
+      "maxHp": 109
+    },
+    {
+      "name": "Vautour des cactus 2",
+      "maxHp": 131
+    }
+  ],
+  "playerHpEnd": 184,
+  "turns": 9,
+  "hits": 6,
+  "berries": {
+    "before": 221,
+    "after": 406,
+    "delta": 185
+  },
+  "xp": 150,
+  "sequence": [
+    "Focus Vautour2: 3x Tir précis → 0",
+    "Reposition dist 4-5",
+    "Focus Vautour1: 3x Tir précis → 0"
+  ],
+  "navigation": {
+    "method": "orbit.cx/cy + multi-step moveLocal paths (12 cells)",
+    "from": [
+      62,
+      38
+    ],
+    "to": [
+      117,
+      43
+    ],
+    "note": "container iso unreliable at long range; single-cell steps fail on obstacles"
+  }
+}

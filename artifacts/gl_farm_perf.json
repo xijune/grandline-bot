@@ -1,0 +1,220 @@
+{
+  "total_ms": 102806,
+  "farm_ms": 85502,
+  "fights_requested": 5,
+  "fights_ok_timed": 5,
+  "timeouts_or_errors": 0,
+  "wins": 4,
+  "losses": 0,
+  "walkFails": 0,
+  "hpDeltas": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "xpDelta": 538,
+  "berriesDelta": 7686,
+  "xp_per_min": 377.5,
+  "berries_per_min": 5393.6,
+  "sec_per_fight": 17.1,
+  "avg_fight_ms": 17100,
+  "char": {
+    "id": "37762d71-bf5c-48ec-8092-de390221be4e",
+    "level": 12,
+    "mapId": "toroa",
+    "name": "Bukima",
+    "packIds": [
+      "toroa-groupe-1-g170",
+      "toroa-groupe-2-g193",
+      "toroa-groupe-3-g67",
+      "toroa-groupe-4-g66"
+    ],
+    "packs": 4,
+    "x": 121,
+    "y": 44
+  },
+  "final_pos": {
+    "id": "37762d71-bf5c-48ec-8092-de390221be4e",
+    "level": 12,
+    "mapId": "toroa",
+    "moving": false,
+    "x": 42,
+    "y": 37
+  },
+  "stats": {
+    "_hpPeak": 338,
+    "battles": 4,
+    "berriesDelta": 7686,
+    "casts": 14,
+    "flees": 0,
+    "guards": 0,
+    "losses": 0,
+    "moves": 4,
+    "startedAt": null,
+    "turns": 25,
+    "walkFails": 0,
+    "wins": 4,
+    "xpDelta": 538
+  },
+  "results": [
+    {
+      "done": true,
+      "ms": 17887,
+      "pos": {
+        "id": "37762d71-bf5c-48ec-8092-de390221be4e",
+        "level": 12,
+        "mapId": "toroa",
+        "moving": false,
+        "x": 121,
+        "y": 44
+      },
+      "result": {
+        "berriesDelta": 2052,
+        "hpDelta": 0,
+        "xpDelta": 142
+      },
+      "stats": {
+        "_hpPeak": 338,
+        "battles": 1,
+        "berriesDelta": 2052,
+        "casts": 7,
+        "flees": 0,
+        "guards": 0,
+        "losses": 0,
+        "moves": 2,
+        "startedAt": null,
+        "turns": 12,
+        "walkFails": 0,
+        "wins": 1,
+        "xpDelta": 142
+      }
+    },
+    {
+      "done": true,
+      "ms": 18442,
+      "pos": {
+        "id": "37762d71-bf5c-48ec-8092-de390221be4e",
+        "level": 12,
+        "mapId": "toroa",
+        "moving": false,
+        "x": 120,
+        "y": 65
+      },
+      "result": {
+        "berriesDelta": 1707,
+        "hpDelta": 0,
+        "xpDelta": 122
+      },
+      "stats": {
+        "_hpPeak": 338,
+        "battles": 2,
+        "berriesDelta": 3759,
+        "casts": 9,
+        "flees": 0,
+        "guards": 0,
+        "losses": 0,
+        "moves": 2,
+        "startedAt": null,
+        "turns": 16,
+        "walkFails": 0,
+        "wins": 2,
+        "xpDelta": 264
+      }
+    },
+    {
+      "done": true,
+      "ms": 31805,
+      "pos": {
+        "id": "37762d71-bf5c-48ec-8092-de390221be4e",
+        "level": 12,
+        "mapId": "toroa",
+        "moving": false,
+        "x": 41,
+        "y": 57
+      },
+      "result": {
+        "berriesDelta": 2052,
+        "hpDelta": 0,
+        "xpDelta": 142
+      },
+      "stats": {
+        "_hpPeak": 338,
+        "battles": 3,
+        "berriesDelta": 5811,
+        "casts": 12,
+        "flees": 0,
+        "guards": 0,
+        "losses": 0,
+        "moves": 4,
+        "startedAt": null,
+        "turns": 22,
+        "walkFails": 0,
+        "wins": 3,
+        "xpDelta": 406
+      }
+    },
+    {
+      "done": true,
+      "ms": 17368,
+      "pos": {
+        "id": "37762d71-bf5c-48ec-8092-de390221be4e",
+        "level": 12,
+        "mapId": "toroa",
+        "moving": false,
+        "x": 42,
+        "y": 37
+      },
+      "result": {
+        "berriesDelta": 1875,
+        "hpDelta": 0,
+        "xpDelta": 132
+      },
+      "stats": {
+        "_hpPeak": 338,
+        "battles": 4,
+        "berriesDelta": 7686,
+        "casts": 14,
+        "flees": 0,
+        "guards": 0,
+        "losses": 0,
+        "moves": 4,
+        "startedAt": null,
+        "turns": 25,
+        "walkFails": 0,
+        "wins": 4,
+        "xpDelta": 538
+      }
+    },
+    {
+      "done": true,
+      "ms": 0,
+      "pos": {
+        "id": "37762d71-bf5c-48ec-8092-de390221be4e",
+        "level": 12,
+        "mapId": "toroa",
+        "moving": false,
+        "x": 42,
+        "y": 37
+      },
+      "result": {
+        "error": "no pack"
+      },
+      "stats": {
+        "_hpPeak": 338,
+        "battles": 4,
+        "berriesDelta": 7686,
+        "casts": 14,
+        "flees": 0,
+        "guards": 0,
+        "losses": 0,
+        "moves": 4,
+        "startedAt": null,
+        "turns": 25,
+        "walkFails": 0,
+        "wins": 4,
+        "xpDelta": 538
+      }
+    }
+  ]
+}

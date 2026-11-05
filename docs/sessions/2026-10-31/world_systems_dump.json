@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-31",
+  "fauna": {
+    "morts": "packId -> respawnAt timestamp",
+    "engagees": "packIds in combat",
+    "generation": "increments on pack respawn cycle",
+    "statuts": [
+      "ENGAGEE",
+      "ABATTUE",
+      "REPEUPLEE"
+    ]
+  },
+  "freeFight": {
+    "delaySeconds": 90,
+    "fields": [
+      "freeFightAt",
+      "combatLibreA"
+    ]
+  },
+  "recoltes": "id + repousseAt",
+  "pickup": "POST /api/characters/:id/inventory/pickup {dropId}",
+  "compteurs": [
+    "combats-gagnes",
+    "betes-abattues",
+    "ventes-au-comptoir"
+  ],
+  "apiPathCount": 411
+}

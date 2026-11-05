@@ -1,0 +1,130 @@
+{
+  "_comment": "Estimates from live captures 2026-10/11 — not server formula. Update via sessions.",
+  "farm_solo": [
+    {
+      "mob_level": 1,
+      "xp": 9
+    },
+    {
+      "mob_level": 2,
+      "xp": 15
+    }
+  ],
+  "quest_talk_xp": 15,
+  "quest_combat_examples": [
+    {
+      "id": "pw1-miliciens",
+      "xp": 85
+    },
+    {
+      "id": "pw2-receleurs",
+      "xp_observed_total": 473,
+      "note": "3x lvl10, includes multi kills"
+    }
+  ],
+  "daily_task_xp": 100,
+  "rules": {
+    "quest_combat_underlevel_margin": 2,
+    "prefer_quest_if_ready": true,
+    "farm_level_window": 3,
+    "min_hp_ratio": 0.35,
+    "prefer_travel_over_farm_when_no_objectives": true,
+    "need_ration_for_sea": true
+  },
+  "sources_ranked": [
+    {
+      "source": "quest_combat",
+      "xp_example": 85,
+      "note": "burst; unlocks content"
+    },
+    {
+      "source": "quest_talk_major",
+      "xp_example": 150,
+      "note": "pw2-lucien"
+    },
+    {
+      "source": "contract_delivery",
+      "xp_example": 180,
+      "note": "plus travel cost time"
+    },
+    {
+      "source": "travel_cap",
+      "xp_example": 60,
+      "note": "pw2-cap / pw3-cap"
+    },
+    {
+      "source": "daily_task",
+      "xp_example": 100,
+      "note": "when progress done"
+    },
+    {
+      "source": "sea_hunt",
+      "xp_example": 60,
+      "note": "ROI_DES_MERS + huntAvailable"
+    },
+    {
+      "source": "farm_solo_l2",
+      "xp_example": 15,
+      "note": "filler XP"
+    }
+  ],
+  "toroa_packs": [
+    {
+      "id_pattern": "toroa-groupe-1",
+      "especes": [
+        "ecureuil"
+      ],
+      "levels": [
+        8,
+        9
+      ],
+      "ancre": [
+        40,
+        35
+      ]
+    },
+    {
+      "id_pattern": "toroa-groupe-2",
+      "especes": [
+        "chien"
+      ],
+      "levels": [
+        9,
+        10
+      ],
+      "ancre": [
+        120,
+        43
+      ]
+    },
+    {
+      "id_pattern": "toroa-groupe-3",
+      "especes": [
+        "poule"
+      ],
+      "levels": [
+        7,
+        9
+      ],
+      "ancre": [
+        40,
+        56
+      ]
+    },
+    {
+      "id_pattern": "toroa-groupe-4",
+      "especes": [
+        "colombe"
+      ],
+      "levels": [
+        7,
+        8
+      ],
+      "ancre": [
+        120,
+        66
+      ]
+    }
+  ],
+  "notes_toroa": "Walk Toroa sans fixture walkable → greedy sometimes stuck. Need toroa_walkable.json capture."
+}

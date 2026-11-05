@@ -1,0 +1,111 @@
+{
+  "_comment": "Catalogue PNJ découvert live — positions approximatives. Enrichir via sessions.",
+  "ilusia": [
+    {
+      "id": "npc-lin-la-voyageuse",
+      "name": "Lin",
+      "x": 79,
+      "y": 92
+    },
+    {
+      "id": "npc-ganza-le-garde",
+      "name": "Ganza",
+      "x": 99,
+      "y": 66
+    },
+    {
+      "id": "npc-aliss-la-guide",
+      "name": "Aliss",
+      "x": 120,
+      "y": 93
+    },
+    {
+      "id": "npc-berthe",
+      "name": "Berthe",
+      "x": 99,
+      "y": 93
+    },
+    {
+      "id": "npc-pip",
+      "name": "Pip",
+      "x": 59,
+      "y": 67
+    },
+    {
+      "id": "npc-soeur-agathe",
+      "name": "Sœur Agathe",
+      "x": 59,
+      "y": 94
+    },
+    {
+      "id": "npc-oscar",
+      "name": "Oscar",
+      "x": 119,
+      "y": 66
+    },
+    {
+      "id": "npc-gaspard",
+      "name": "Gaspard",
+      "x": 39,
+      "y": 94
+    }
+  ],
+  "ohara": [
+    {
+      "id": "npc-lieutenant-vasseur",
+      "name": "Lieutenant Vasseur",
+      "x": 42,
+      "y": 104
+    },
+    {
+      "id": "npc-robin",
+      "name": "Noémi",
+      "x": 80,
+      "y": 75
+    },
+    {
+      "id": "npc-olvia",
+      "name": "Maëlle",
+      "x": 117,
+      "y": 104
+    },
+    {
+      "id": "npc-saul",
+      "name": "Doran",
+      "x": 80,
+      "y": 123
+    },
+    {
+      "id": "npc-tobie-le-repecheur",
+      "name": "Tobie",
+      "x": 33,
+      "y": 82
+    },
+    {
+      "id": "npc-hortense-la-cuisiniere",
+      "name": "Hortense",
+      "x": 58,
+      "y": 118
+    },
+    {
+      "id": "npc-lucien-le-pelerin",
+      "name": "Lucien",
+      "x": 49,
+      "y": 42
+    },
+    {
+      "id": "npc-severin-hauteclaire-a-ohara",
+      "name": "Séverin",
+      "x": 69,
+      "y": 32
+    },
+    {
+      "id": "quete-nolwen-astier",
+      "name": "Nolwen",
+      "x": 100,
+      "y": 118
+    }
+  ],
+  "toroa": [],
+  "_toroa_note": "PNJ IDs encore inconnus — sonder via console GLBot.npcsProbe() / campaign talk. Spawn port ~53,129."
+}

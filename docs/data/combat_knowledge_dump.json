@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-31",
+  "source": "live GET /api/battles/:id after engage multi-vautour",
+  "battleTopKeys": [
+    "winner",
+    "fighters",
+    "log",
+    "id",
+    "round",
+    "finished",
+    "kind",
+    "islandId",
+    "placementEndsAt",
+    "turnEndsAt",
+    "margeDeRelecture",
+    "pretsAuPlacement",
+    "attendusAuPlacement",
+    "createurId",
+    "renfortsExcluables",
+    "optionsDePlacement",
+    "you",
+    "spectator",
+    "yourTurn",
+    "activeFighterId",
+    "order",
+    "turn",
+    "absent",
+    "revenu",
+    "toursManques",
+    "secondesParTour",
+    "actions",
+    "tactics"
+  ],
+  "tacticsKeys": [
+    "grid",
+    "placementDone",
+    "placementCells",
+    "placementCellsAdverses",
+    "onMap",
+    "pont",
+    "mapId",
+    "obstacles",
+    "hazards",
+    "positions",
+    "yourTurn",
+    "ap",
+    "mp",
+    "activeFighterId",
+    "reachable"
+  ],
+  "timing": {
+    "secondesParTour": 30,
+    "margeDeRelecture": 1600,
+    "kind": "FAUNE"
+  },
+  "fighterSchema": {
+    "fields": [
+      "id",
+      "name",
+      "team",
+      "level",
+      "aspiration",
+      "armeDeTir",
+      "race",
+      "hp",
+      "maxHp",
+      "statuses",
+      "caracs",
+      "weaponName",
+      "techniques",
+      "faune",
+      "fruit"
+    ],
+    "caracs": [
+      "pa",
+      "pm",
+      "initiative",
+      "bouclier",
+      "bouclierTours",
+      "resistances",
+      "esquive",
+      "tacle",
+      "effets"
+    ],
+    "resistances": [
+      "generale",
+      "TRANCHANT",
+      "CONTONDANT",
+      "TIR",
+      "ELEMENTAIRE",
+      "SONIQUE",
+      "critiques",
+      "alterations"
+    ]
+  },
+  "enemyExample": {
+    "name": "Vautour des cactus",
+    "level": 1,
+    "aspiration": "COMBATTANT",
+    "armeDeTir": false,
+    "pa": 6,
+    "pm": 3,
+    "initiative": 32,
+    "techniques": [
+      {
+        "id": "com-1",
+        "name": "Poing de fer",
+        "type": "CONTONDANT",
+        "range": 1,
+        "pa": 2,
+        "power": 1.3
+      }
+    ]
+  },
+  "playerCaracs": {
+    "pa": 6,
+    "pm": 3,
+    "initiative": 26,
+    "resistances": {
+      "generale": 0.08
+    },
+    "armeDeTir": true,
+    "weaponName": "Lance-pierre renforcé",
+    "stats": {
+      "force": 10,
+      "vitesse": 8,
+      "resistance": 14,
+      "intelligence": 10,
+      "perception": 18,
+      "volonte": 14,
+      "endurance": 20
+    }
+  },
+  "estimatesSchema": {
+    "min": 0,
+    "max": 0,
+    "critMin": 0,
+    "critMax": 0
+  },
+  "damageEfficiencyLive": {
+    "Attaque": {
+      "avg": 34.5,
+      "pa": 2,
+      "eff": 17.2,
+      "note": "range 1 serveur"
+    },
+    "Tir précis": {
+      "avg": 41.0,
+      "pa": 2,
+      "eff": 20.5,
+      "best": true
+    },
+    "Dégainé précis": {
+      "avg": 49.5,
+      "pa": 3,
+      "eff": 16.5
+    },
+    "Flamme dorsale": {
+      "avg": 23.0,
+      "pa": 4,
+      "eff": 5.8,
+      "note": "très mauvais vs ces cibles"
+    }
+  },
+  "critRatioApprox": 1.6,
+  "logEventTypesSeen": [
+    "INITIATIVE",
+    "ENGAGE",
+    "MOVE"
+  ],
+  "moveLogFields": [
+    "actor",
+    "actorId",
+    "from",
+    "to",
+    "path",
+    "mp",
+    "taclePm",
+    "taclePa"
+  ],
+  "mastery": {
+    "tir-1": {
+      "rank": 1,
+      "uses": 18.2,
+      "next": 150,
+      "branche": "PORTEE"
+    },
+    "weapon-shot-quickdraw": {
+      "rank": 1,
+      "uses": 1.4,
+      "next": 150,
+      "branche": "PORTEE"
+    }
+  },
+  "grid": {
+    "width": 19,
+    "height": 19,
+    "obstaclesCount": 105,
+    "hazards": "water-like cells on beach"
+  }
+}

@@ -1,0 +1,555 @@
+{
+  "date": "2026-10-31",
+  "winner": "ALLIE",
+  "enemies": [
+    "Vautour 109hp",
+    "Vautour 131hp"
+  ],
+  "logEventTypes": [
+    "INITIATIVE",
+    "ENGAGE",
+    "MOVE",
+    "CAST",
+    "DAMAGE",
+    "DOWN",
+    "END"
+  ],
+  "schemas": {
+    "INITIATIVE": {
+      "keys": [
+        "type",
+        "order",
+        "orderIds",
+        "seq"
+      ],
+      "sample": {
+        "type": "INITIATIVE",
+        "order": [
+          "Vautour des cactus 1",
+          "Bukima",
+          "Vautour des cactus 2"
+        ],
+        "orderIds": [
+          "quest-enemy",
+          "37762d71-bf5c-48ec-8092-de390221be4e",
+          "quest-enemy-1"
+        ],
+        "seq": 0
+      }
+    },
+    "ENGAGE": {
+      "keys": [
+        "type",
+        "seq"
+      ],
+      "sample": {
+        "type": "ENGAGE",
+        "seq": 1
+      }
+    },
+    "MOVE": {
+      "keys": [
+        "type",
+        "actor",
+        "actorId",
+        "to",
+        "mp",
+        "from",
+        "path",
+        "seq"
+      ],
+      "sample": {
+        "type": "MOVE",
+        "actor": "Vautour des cactus 1",
+        "actorId": "quest-enemy",
+        "to": {
+          "x": 115,
+          "y": 40,
+          "cost": 3,
+          "taclePm": 0,
+          "taclePa": 0
+        },
+        "mp": 0,
+        "from": {
+          "x": 113,
+          "y": 39
+        },
+        "path": [
+          {
+            "x": 113,
+            "y": 39
+          },
+          {
+            "x": 113,
+            "y": 40
+          },
+          {
+            "x": 114,
+            "y": 40
+          },
+          {
+            "x": 115,
+            "y": 40
+          }
+        ],
+        "seq": 2
+      }
+    },
+    "CAST": {
+      "keys": [
+        "type",
+        "actor",
+        "actorId",
+        "technique",
+        "techniqueId",
+        "damageType",
+        "origin",
+        "fx",
+        "supportive",
+        "cell",
+        "cells",
+        "atRange",
+        "hits",
+        "seq"
+      ],
+      "sample": {
+        "type": "CAST",
+        "actor": "Bukima",
+        "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+        "technique": "Tir précis",
+        "techniqueId": "aspiration:TIREUR:tir-1",
+        "damageType": "TIR",
+        "origin": "ASPIRATION",
+        "fx": null,
+        "supportive": false,
+        "cell": {
+          "x": 115,
+          "y": 40
+        },
+        "cells": [
+          {
+            "x": 115,
+            "y": 40
+          }
+        ],
+        "atRange": true,
+        "hits": 1,
+        "seq": 4
+      }
+    },
+    "DAMAGE": {
+      "keys": [
+        "type",
+        "actor",
+        "actorId",
+        "target",
+        "targetId",
+        "amount",
+        "damageType",
+        "critical",
+        "technique",
+        "remaining",
+        "maxHp",
+        "techniqueId",
+        "fx",
+        "origin",
+        "atRange",
+        "seq"
+      ],
+      "sample": {
+        "type": "DAMAGE",
+        "actor": "Bukima",
+        "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+        "target": "Vautour des cactus 1",
+        "targetId": "quest-enemy",
+        "amount": 70,
+        "damageType": "TIR",
+        "critical": true,
+        "technique": "Tir précis",
+        "remaining": 39,
+        "maxHp": 109,
+        "techniqueId": "aspiration:TIREUR:tir-1",
+        "fx": null,
+        "origin": "ASPIRATION",
+        "atRange": true,
+        "seq": 5
+      }
+    },
+    "DOWN": {
+      "keys": [
+        "type",
+        "target",
+        "targetId",
+        "seq"
+      ],
+      "sample": {
+        "type": "DOWN",
+        "target": "Vautour des cactus 1",
+        "targetId": "quest-enemy",
+        "seq": 8
+      }
+    },
+    "END": {
+      "keys": [
+        "type",
+        "winner",
+        "seq"
+      ],
+      "sample": {
+        "type": "END",
+        "winner": "ALLIE",
+        "seq": 17
+      }
+    }
+  },
+  "damageEvents": [
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 1",
+      "targetId": "quest-enemy",
+      "amount": 70,
+      "damageType": "TIR",
+      "critical": true,
+      "technique": "Tir précis",
+      "remaining": 39,
+      "maxHp": 109,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 5
+    },
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 1",
+      "targetId": "quest-enemy",
+      "amount": 40,
+      "damageType": "TIR",
+      "critical": false,
+      "technique": "Tir précis",
+      "remaining": 0,
+      "maxHp": 109,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 7
+    },
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 2",
+      "targetId": "quest-enemy-1",
+      "amount": 67,
+      "damageType": "TIR",
+      "critical": true,
+      "technique": "Tir précis",
+      "remaining": 64,
+      "maxHp": 131,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 10
+    },
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 2",
+      "targetId": "quest-enemy-1",
+      "amount": 44,
+      "damageType": "TIR",
+      "critical": false,
+      "technique": "Tir précis",
+      "remaining": 20,
+      "maxHp": 131,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 13
+    },
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 2",
+      "targetId": "quest-enemy-1",
+      "amount": 67,
+      "damageType": "TIR",
+      "critical": true,
+      "technique": "Tir précis",
+      "remaining": 0,
+      "maxHp": 131,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 15
+    }
+  ],
+  "castEvents": [
+    {
+      "type": "CAST",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "technique": "Tir précis",
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "damageType": "TIR",
+      "origin": "ASPIRATION",
+      "fx": null,
+      "supportive": false,
+      "cell": {
+        "x": 115,
+        "y": 40
+      },
+      "cells": [
+        {
+          "x": 115,
+          "y": 40
+        }
+      ],
+      "atRange": true,
+      "hits": 1,
+      "seq": 4
+    },
+    {
+      "type": "CAST",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "technique": "Tir précis",
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "damageType": "TIR",
+      "origin": "ASPIRATION",
+      "fx": null,
+      "supportive": false,
+      "cell": {
+        "x": 115,
+        "y": 40
+      },
+      "cells": [
+        {
+          "x": 115,
+          "y": 40
+        }
+      ],
+      "atRange": true,
+      "hits": 1,
+      "seq": 6
+    },
+    {
+      "type": "CAST",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "technique": "Tir précis",
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "damageType": "TIR",
+      "origin": "ASPIRATION",
+      "fx": null,
+      "supportive": false,
+      "cell": {
+        "x": 114,
+        "y": 39
+      },
+      "cells": [
+        {
+          "x": 114,
+          "y": 39
+        }
+      ],
+      "atRange": true,
+      "hits": 1,
+      "seq": 9
+    },
+    {
+      "type": "CAST",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "technique": "Tir précis",
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "damageType": "TIR",
+      "origin": "ASPIRATION",
+      "fx": null,
+      "supportive": false,
+      "cell": {
+        "x": 115,
+        "y": 41
+      },
+      "cells": [
+        {
+          "x": 115,
+          "y": 41
+        }
+      ],
+      "atRange": true,
+      "hits": 1,
+      "seq": 12
+    },
+    {
+      "type": "CAST",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "technique": "Tir précis",
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "damageType": "TIR",
+      "origin": "ASPIRATION",
+      "fx": null,
+      "supportive": false,
+      "cell": {
+        "x": 115,
+        "y": 41
+      },
+      "cells": [
+        {
+          "x": 115,
+          "y": 41
+        }
+      ],
+      "atRange": true,
+      "hits": 1,
+      "seq": 14
+    }
+  ],
+  "observedCrits": [
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 1",
+      "targetId": "quest-enemy",
+      "amount": 70,
+      "damageType": "TIR",
+      "critical": true,
+      "technique": "Tir précis",
+      "remaining": 39,
+      "maxHp": 109,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 5
+    },
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 2",
+      "targetId": "quest-enemy-1",
+      "amount": 67,
+      "damageType": "TIR",
+      "critical": true,
+      "technique": "Tir précis",
+      "remaining": 64,
+      "maxHp": 131,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 10
+    },
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 2",
+      "targetId": "quest-enemy-1",
+      "amount": 67,
+      "damageType": "TIR",
+      "critical": true,
+      "technique": "Tir précis",
+      "remaining": 0,
+      "maxHp": 131,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 15
+    }
+  ],
+  "observedNormals": [
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 1",
+      "targetId": "quest-enemy",
+      "amount": 40,
+      "damageType": "TIR",
+      "critical": false,
+      "technique": "Tir précis",
+      "remaining": 0,
+      "maxHp": 109,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 7
+    },
+    {
+      "type": "DAMAGE",
+      "actor": "Bukima",
+      "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "target": "Vautour des cactus 2",
+      "targetId": "quest-enemy-1",
+      "amount": 44,
+      "damageType": "TIR",
+      "critical": false,
+      "technique": "Tir précis",
+      "remaining": 20,
+      "maxHp": 131,
+      "techniqueId": "aspiration:TIREUR:tir-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": true,
+      "seq": 13
+    }
+  ],
+  "lootAfter": [
+    {
+      "id": "slingshot",
+      "name": "Lance-pierre renforcé",
+      "quantity": 1
+    },
+    {
+      "id": "viande-de-gibier",
+      "name": "Viande de gibier",
+      "quantity": 5
+    },
+    {
+      "id": "peau-tannee",
+      "name": "Peau tannée",
+      "quantity": 1
+    },
+    {
+      "id": "minerai-fer",
+      "name": "Minerai de fer",
+      "quantity": 1
+    },
+    {
+      "id": "ble",
+      "name": "Blé",
+      "quantity": 1
+    },
+    {
+      "id": "plumes",
+      "name": "Plumes",
+      "quantity": 10
+    }
+  ],
+  "berries": 478,
+  "xp": 187,
+  "notes": [
+    "CAST uses techniqueId like aspiration:TIREUR:tir-1",
+    "CAST has cells[], cell, atRange, hits, damageType, supportive",
+    "DAMAGE has amount, critical, remaining, maxHp, damageType",
+    "DOWN when hp reaches 0",
+    "END with winner ALLIE/ENNEMI",
+    "Loot drops confirmed: viande-de-gibier, peau-tannee, minerai-fer, ble, plumes"
+  ]
+}

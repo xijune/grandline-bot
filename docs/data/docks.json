@@ -1,0 +1,5 @@
+{
+  "ilusia": {"x": 104, "y": 139, "sorties": ["sud", "nord", "est", "ouest"]},
+  "ohara": {"x": 45, "y": 145, "sorties": ["sud", "ouest", "est", "nord"]},
+  "toroa": {"x": 53, "y": 129, "sorties": ["sud", "nord", "est", "ouest"]}
+}

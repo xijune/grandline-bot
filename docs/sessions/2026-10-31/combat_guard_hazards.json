@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-31",
+  "guardLogType": "GUARD",
+  "statusApplied": {
+    "id": "GARDE",
+    "turns": 1,
+    "stack": 1,
+    "force": 1,
+    "posee": false
+  },
+  "bouclierChange": false,
+  "duration": "1 tour (status disparait au tour suivant)",
+  "dmgWhileGuarded": [
+    {
+      "type": "DAMAGE",
+      "actor": "Vautour des cactus 1",
+      "actorId": "quest-enemy",
+      "target": "Bukima",
+      "targetId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "amount": 18,
+      "damageType": "CONTONDANT",
+      "critical": true,
+      "technique": "Poing de fer",
+      "remaining": 185,
+      "maxHp": 262,
+      "techniqueId": "aspiration:COMBATTANT:com-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": false,
+      "seq": 15
+    },
+    {
+      "type": "DAMAGE",
+      "actor": "Vautour des cactus 1",
+      "actorId": "quest-enemy",
+      "target": "Bukima",
+      "targetId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "amount": 10,
+      "damageType": "CONTONDANT",
+      "critical": false,
+      "technique": "Poing de fer",
+      "remaining": 175,
+      "maxHp": 262,
+      "techniqueId": "aspiration:COMBATTANT:com-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": false,
+      "seq": 17
+    },
+    {
+      "type": "DAMAGE",
+      "actor": "Vautour des cactus 1",
+      "actorId": "quest-enemy",
+      "target": "Bukima",
+      "targetId": "37762d71-bf5c-48ec-8092-de390221be4e",
+      "amount": 9,
+      "damageType": "CONTONDANT",
+      "critical": false,
+      "technique": "Poing de fer",
+      "remaining": 166,
+      "maxHp": 262,
+      "techniqueId": "aspiration:COMBATTANT:com-1",
+      "fx": null,
+      "origin": "ASPIRATION",
+      "atRange": false,
+      "seq": 19
+    }
+  ],
+  "hazardsN": 99,
+  "obstaclesN": 111,
+  "gardeResponse": {
+    "before": {
+      "hp": 203,
+      "statuses": [],
+      "caracs": {
+        "pa": 6,
+        "pm": 3,
+        "initiative": 33,
+        "bouclier": 0,
+        "bouclierTours": 0,
+        "resistances": {
+          "generale": 0.08,
+          "TRANCHANT": 0,
+          "CONTONDANT": 0,
+          "TIR": 0,
+          "ELEMENTAIRE": 0,
+          "SONIQUE": 0,
+          "critiques": 0,
+          "alterations": 0
+        },
+        "esquive": 0,
+        "tacle": 0,
+        "effets": []
+      },
+      "effets": []
+    },
+    "after": {
+      "hp": 203,
+      "statuses": [
+        {
+          "id": "GARDE",
+          "turns": 1,
+          "stack": 1,
+          "force": 1,
+          "posee": false
+        }
+      ],
+      "caracs": {
+        "pa": 6,
+        "pm": 3,
+        "initiative": 33,
+        "bouclier": 0,
+        "bouclierTours": 0,
+        "resistances": {
+          "generale": 0.08,
+          "TRANCHANT": 0,
+          "CONTONDANT": 0,
+          "TIR": 0,
+          "ELEMENTAIRE": 0,
+          "SONIQUE": 0,
+          "critiques": 0,
+          "alterations": 0
+        },
+        "esquive": 0,
+        "tacle": 0,
+        "effets": []
+      },
+      "effets": []
+    },
+    "logNew": [
+      {
+        "type": "INITIATIVE",
+        "order": [
+          "Bukima",
+          "Vautour des cactus 1",
+          "Vautour des cactus 2"
+        ],
+        "orderIds": [
+          "37762d71-bf5c-48ec-8092-de390221be4e",
+          "quest-enemy",
+          "quest-enemy-1"
+        ],
+        "seq": 0
+      },
+      {
+        "type": "ENGAGE",
+        "seq": 1
+      },
+      {
+        "type": "MOVE",
+        "actor": "Bukima",
+        "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+        "to": {
+          "x": 115,
+          "y": 44
+        },
+        "mp": 0,
+        "from": {
+          "x": 118,
+          "y": 44
+        },
+        "path": [
+          {
+            "x": 118,
+            "y": 44
+          },
+          {
+            "x": 117,
+            "y": 44
+          },
+          {
+            "x": 116,
+            "y": 44
+          },
+          {
+            "x": 115,
+            "y": 44
+          }
+        ],
+        "seq": 2
+      },
+      {
+        "type": "GUARD",
+        "actor": "Bukima",
+        "actorId": "37762d71-bf5c-48ec-8092-de390221be4e",
+        "seq": 3
+      }
+    ]
+  }
+}

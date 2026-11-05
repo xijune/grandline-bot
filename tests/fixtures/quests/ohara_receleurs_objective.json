@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "captured": "2026-11-02",
+    "characterId": "37762d71-bf5c-48ec-8092-de390221be4e",
+    "note": "GET /quest-objectives before pw2-receleurs clear"
+  },
+  "character": {
+    "mapId": "ohara",
+    "x": 85,
+    "y": 112,
+    "currentHp": 338,
+    "maxHp": 529,
+    "campaign": {
+      "stage": 132,
+      "parcours": "west",
+      "accomplies": 13,
+      "dernier": "pw2-severin"
+    },
+    "discoveredLocations": ["ilusia", "ohara"]
+  },
+  "quest_objectives": {
+    "mapId": "ohara",
+    "objectifs": [
+      {
+        "id": "campagne:pw2-receleurs",
+        "kind": "combat",
+        "campaign": true,
+        "x": 72,
+        "y": 36,
+        "nom": "Receleur de livres repêchés"
+      }
+    ]
+  },
+  "expected_plan_far": {"type": "walk", "objectifId": "campagne:pw2-receleurs"},
+  "expected_plan_near": {"type": "fight_quest", "objectifId": "campagne:pw2-receleurs"}
+}

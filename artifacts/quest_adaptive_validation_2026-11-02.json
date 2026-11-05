@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-02",
+  "all_passed": true,
+  "checks": {
+    "pytest_8_passed": true,
+    "golden_far_walk": true,
+    "golden_near_fight": true,
+    "live_plan_travel_hint_toroa": true,
+    "no_fake_fight_without_objectives": true
+  },
+  "campaign_after": {
+    "stage": 134,
+    "dernier": "pw2-lucien",
+    "accomplies": 15
+  },
+  "next": "travel toroa"
+}

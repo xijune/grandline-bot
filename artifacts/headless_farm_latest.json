@@ -1,0 +1,88 @@
+[
+  {
+    "error": "start",
+    "status": 409,
+    "data": {
+      "error": "Le groupe est trop loin : approche-toi d’abord",
+      "code": "CONFLIT"
+    }
+  },
+  {
+    "bid": "a3e93d8c-4f5f-4e0b-ae92-e1a892b6eaf4",
+    "pack": "ohara-groupe-17-g147",
+    "winner": "ALLIE",
+    "hpBefore": 338,
+    "hpAfter": 338,
+    "hpDelta": 0,
+    "logs": [
+      "Tir précis→Hibou des archives d=5 ~96",
+      "Tir précis→Hibou des archives d=5 ~96",
+      "APPROACH 7→5",
+      "Tir précis→Chien errant d=5 ~85",
+      "AP0 d=5",
+      "KITE 3→6",
+      "Tir précis→Chien errant d=6 ~85",
+      "Tir précis→Chien errant d=6 ~85",
+      "idle d=7",
+      "WINNER ALLIE"
+    ],
+    "fixtures": 9,
+    "fixtureFiles": [
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/a3e93d8c_t01.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/a3e93d8c_t02.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/a3e93d8c_t03.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/a3e93d8c_t04.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/a3e93d8c_t05.json"
+    ]
+  },
+  {
+    "bid": "f37e6d16-79cf-4e60-b968-ba06e0e3aa3f",
+    "pack": "ohara-groupe-32-g87",
+    "winner": "ALLIE",
+    "hpBefore": 338,
+    "hpAfter": 338,
+    "hpDelta": 0,
+    "logs": [
+      "Tir précis→Écureuil des mangroves d=6 ~98",
+      "Tir précis→Écureuil des mangroves d=6 ~98",
+      "APPROACH 7→5",
+      "Tir précis→Hibou des archives d=5 ~93",
+      "AP0 d=5",
+      "WINNER ALLIE"
+    ],
+    "fixtures": 5,
+    "fixtureFiles": [
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/f37e6d16_t01.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/f37e6d16_t02.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/f37e6d16_t03.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/f37e6d16_t04.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/f37e6d16_t05.json"
+    ]
+  },
+  {
+    "bid": "4a7d99e6-3977-4984-a717-be696f7a5bad",
+    "pack": "ohara-groupe-33-g108",
+    "winner": "ALLIE",
+    "hpBefore": 338,
+    "hpAfter": 338,
+    "hpDelta": 0,
+    "logs": [
+      "APPROACH 6→5",
+      "Tir précis→Chat de gouttière d=5 ~89",
+      "Tir précis→Chat de gouttière d=5 ~89",
+      "Tir précis→Chat de gouttière d=5 ~89",
+      "AP0 d=6",
+      "Tir précis→Hibou des archives d=6 ~96",
+      "Tir précis→Hibou des archives d=6 ~96",
+      "WINNER ALLIE"
+    ],
+    "fixtures": 7,
+    "fixtureFiles": [
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/4a7d99e6_t01.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/4a7d99e6_t02.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/4a7d99e6_t03.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/4a7d99e6_t04.json",
+      "/home/workdir/artifacts/grandline-bot/tests/fixtures/battles/4a7d99e6_t05.json"
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-31",
+  "restState": {
+    "endpoint": "GET /api/world/rest/:characterId",
+    "fields": [
+      "vitality",
+      "vitalityMax",
+      "label",
+      "hp",
+      "freeSleep",
+      "inn",
+      "ship",
+      "rough"
+    ],
+    "rough": "BELLE_ETOILE available, gain vitality toward cap 50",
+    "inn": "paid rest price 900 on ilusia when available"
+  },
+  "harvest": {
+    "endpoint": "POST /api/characters/:id/harvest",
+    "success": "loot[] + nextHarvestAt + harvestKey island",
+    "cooldown429": "Tu as déjà tout ramassé ici. Reviens dans 2 minutes.",
+    "exampleLoot": [
+      "peau-tannee",
+      "baies-sauvages"
+    ]
+  },
+  "daily": {
+    "GET": "/api/characters/:id/daily",
+    "claim": "POST .../daily/claim",
+    "spin": "POST .../daily/spin",
+    "taches": [
+      "combats",
+      "peche",
+      "quetes"
+    ],
+    "tacheRewardExample": {
+      "xp": 64,
+      "berrys": 140
+    },
+    "tacheClaimPath": "/api/characters/:id/daily/taches/:taskId (bundle)"
+  },
+  "sockets": [
+    "players:moved",
+    "world:maj",
+    "world:entre",
+    "world:population",
+    "player:left"
+  ],
+  "fauna": {
+    "engagees": "skip when farming",
+    "morts": "respawn timestamp shared (other players kills visible)"
+  }
+}

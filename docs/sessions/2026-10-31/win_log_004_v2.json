@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-31",
+  "module": "GLCombat v2.0",
+  "result": "WIN_MULTI_0DMG",
+  "enemies": [
+    "Vautour 1",
+    "Vautour 2"
+  ],
+  "turns": 10,
+  "dmgDealt": 306,
+  "dmgTaken": 0,
+  "crits": 3,
+  "berriesDelta": 64,
+  "decisions": "focus fire V2 then V1, kite, Tir précis preferred (eff 25.3)"
+}

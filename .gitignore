@@ -1,0 +1,24 @@
+# Local config / secrets
+config/config.js
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Heavy RE artefacts (optional local copy)
+docs/data/raw/client_bundle.js
+
+# Multi-bot dashboard secrets & logs
+config/accounts.json
+artifacts/bot_logs/

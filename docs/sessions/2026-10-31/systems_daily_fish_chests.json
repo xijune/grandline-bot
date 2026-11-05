@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-31",
+  "dailyTacheClaim": {
+    "path": "POST /api/characters/:id/daily/taches/:taskId/reclamer",
+    "tested": "combats → gain xp 64 + berrys 140, reclamee true"
+  },
+  "fish": {
+    "path": "POST /api/characters/:id/fish",
+    "requires": "adjacent to water",
+    "errorNoWater": "Il n'y a pas d'eau ici...",
+    "success": {
+      "caught": {
+        "id": "algue-marine",
+        "quantity": 1,
+        "nextAt": "ts"
+      }
+    },
+    "dailyProgress": "peche task +1 even for algue"
+  },
+  "hakiTrain": {
+    "path": "POST /api/characters/:id/haki/train",
+    "body": {
+      "voie": "observation|armament"
+    },
+    "result": "409 — Haki se gagne au combat uniquement"
+  },
+  "chests": {
+    "path": "GET /api/characters/:id/chests",
+    "open": "POST .../chests/open {chestId}",
+    "ilusia": "3 chests all opened, revientDans ms respawn"
+  },
+  "questObjectives": {
+    "GET": "/api/characters/:id/quest-objectives → {mapId, objectifs[]}",
+    "search": "POST .../quest-search requires objectifId"
+  }
+}

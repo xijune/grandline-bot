@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-31",
+  "session": "multi-win morning",
+  "apiBerries": 221,
+  "uiBerriesStale": 137,
+  "xp": 113,
+  "wins": [
+    {
+      "enemy": "Rat des chantiers",
+      "result": "ALLIE",
+      "turns": 4,
+      "hits": 2,
+      "skills": [
+        "Tir précis",
+        "Tir précis"
+      ],
+      "playerHpEnd": 184
+    },
+    {
+      "enemy": "Chien errant",
+      "result": "ALLIE",
+      "turns": 7,
+      "hits": 4,
+      "skills": [
+        "Tir précis x3",
+        "Dégainé précis"
+      ],
+      "playerHpEnd": 184,
+      "note": "kited dist 4-5 mid fight"
+    }
+  ],
+  "findings": [
+    "UI berries STALE — always read via GET /api/characters (berries field)",
+    "scene.character.berries also stale",
+    "Rats/chiens may drop 0 items often; berries still gain on API",
+    "Chien ~192 HP needs 4 techniques",
+    "ATTAQUE range 1 confirmed; techniques distance OK"
+  ]
+}

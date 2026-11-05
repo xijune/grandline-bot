@@ -1,0 +1,576 @@
+[
+  {
+    "meta": {
+      "system": "world",
+      "capturedAt": "2026-11-02T03:11:52.203491+00:00",
+      "source": "capture_rest_session",
+      "characterId": null
+    },
+    "request": {
+      "method": "GET",
+      "path": "/api/characters",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": [
+        {
+          "id": "37762d71-bf5c-48ec-8092-de390221be4e",
+          "name": "Bukima",
+          "epithet": null,
+          "titre": null,
+          "faction": "PIRATE",
+          "race": "LUNARIA",
+          "aspiration": "TIREUR",
+          "originSea": "WEST_BLUE",
+          "appearance": {
+            "sex": "FEMALE",
+            "race": "LUNARIA",
+            "cg": "1",
+            "cgLignee": "human",
+            "cgConfig": "f1",
+            "cg_body": "human",
+            "cg_body_1": "human_skin_peach",
+            "cg_head": "human",
+            "cg_eyes": "human",
+            "cg_ears": "dragon",
+            "cg_nose": "base",
+            "cg_facial": "beard",
+            "cg_facial_1": "human_hair_green2",
+            "cg_hair": "flattop1",
+            "cg_hair_1": "human_hair_blonde7",
+            "cg_horns": "maskmen2",
+            "cg_wings": "featheredwings",
+            "cg_tail": "cattail",
+            "cg_shirt": "sash",
+            "cg_shirt_1": "cloth_magenta1",
+            "cg_shirt_2": "cloth_blue4",
+            "cg_pants": "pants",
+            "cg_pants_1": "cloth_brown2",
+            "cg_pants_2": "plain_lavender1",
+            "cg_shoes": "boots4",
+            "cg_shoes_1": "cloth_green1",
+            "cg_jacket": "overalls",
+            "cg_jacket_1": "cloth_brown1",
+            "cg_gloves": "bracers1",
+            "cg_gloves_1": "cloth_blue4",
+            "cg_hat": "helmet32",
+            "cg_hat_1": "metal_brushed",
+            "cg_hat_2": "cloth_teal1",
+            "cg_mainhand": "waraxe",
+            "cg_mainhand_1": "metal_bluesteel",
+            "cg_mainhand_2": "cloth_brown2",
+            "cg_offhand": "round1r",
+            "cg_offhand_1": "round_face_white",
+            "cg_offhand_2": "metal_copper"
+          },
+          "mapId": "ohara",
+          "x": 119,
+          "y": 90,
+          "level": 9,
+          "xp": 3939,
+          "berries": 71108,
+          "bounty": 3255,
+          "appelDeLaPrime": null,
+          "hunted": null,
+          "marineRank": "RECRUE",
+          "marineRankName": "Recrue",
+          "successorId": null,
+          "dead": false,
+          "nameChange": null,
+          "renameRequired": false,
+          "freeFightAt": 1793580723983,
+          "deadAt": null,
+          "deadBy": null,
+          "deadCircumstance": null,
+          "crossGuild": 0,
+          "headPrice": 3255,
+          "stats": {
+            "force": 10,
+            "vitesse": 8,
+            "resistance": 14,
+            "intelligence": 10,
+            "perception": 18,
+            "volonte": 14,
+            "endurance": 20
+          },
+          "haki": {
+            "observation": {
+              "unlocked": false,
+              "level": 0,
+              "xp": 2640
+            },
+            "armament": {
+              "unlocked": false,
+              "level": 0,
+              "xp": 2640
+            },
+            "conqueror": {
+              "unlocked": false,
+              "level": 0,
+              "xp": 0
+            }
+          },
+          "zoanForme": "humaine",
+          "zoanFormeAt": 0,
+          "inventory": {
+            "bagCapacity": 24,
+            "bonusCapacity": 0,
+            "fruitCapacity": 0,
+            "items": [
+              {
+                "id": "slingshot",
+                "name": "Lance-pierre renforcé",
+                "quantity": 1
+              },
+              {
+                "id": "grappin",
+                "name": "Grappin d’abordage",
+                "quantity": 1
+              },
+              {
+                "id": "bois-brut",
+                "name": "Bois brut",
+                "quantity": 34
+              },
+              {
+                "id": "poisson-commun",
+                "name": "Poisson de port",
+                "quantity": 13
+              },
+              {
+                "id": "bois-de-fer",
+                "name": "Bois de fer",
+                "quantity": 5
+              },
+              {
+                "id": "viande-de-gibier",
+                "name": "Viande de gibier",
+                "quantity": 16
+              },
+              {
+                "id": "plumes",
+                "name": "Plumes",
+                "quantity": 41
+              },
+              {
+                "id": "encre-de-poulpe",
+                "name": "Encre de poulpe géant",
+                "quantity": 5
+              },
+              {
+                "id": "sel-marin",
+                "name": "Sel marin",
+                "quantity": 3
+              },
+              {
+                "id": "peau-tannee",
+                "name": "Peau tannée",
+                "quantity": 7
+              },
+              {
+                "id": "baies-sauvages",
+                "name": "Baies sauvages",
+                "quantity": 3
+              },
+              {
+                "id": "ble",
+                "name": "Blé",
+                "quantity": 1
+              },
+              {
+                "id": "minerai-fer",
+                "name": "Minerai de fer",
+                "quantity": 2
+              },
+              {
+                "id": "fibre-vegetale",
+                "name": "Fibre végétale",
+                "quantity": 2
+              },
+              {
+                "id": "resine",
+                "name": "Résine",
+                "quantity": 9
+              },
+              {
+                "id": "fil-d-araignee-geante",
+                "name": "Fil d’araignée géante",
+                "quantity": 2
+              },
+              {
+                "id": "corne-de-bete",
+                "name": "Corne de bête",
+                "quantity": 2
+              }
+            ]
+          },
+          "equipment": {
+            "chapeau": null,
+            "visage": null,
+            "collier": null,
+            "arme": "slingshot",
+            "arme-secondaire": null,
+            "armure": null,
+            "gants": null,
+            "bague-gauche": null,
+            "bague-droite": null,
+            "bottes": null,
+            "ceinture": null,
+            "accessoire": null,
+            "arme-tertiaire": null,
+            "pose": null,
+            "denden": null
+          },
+          "upgrades": {},
+          "mastery": {
+            "tir-1": 315.64,
+            "weapon-shot-quickdraw": 4.2,
+            "weapon-shot-aimed": 2.73
+          },
+          "bank": {
+            "balance": 0,
+            "lastInterestAt": 1793379869557,
+            "loan": {
+              "principal": 250000,
+              "amount": 305000,
+              "dueAt": 1793639069557
+            },
+            "journal": [
+              {
+                "type": "EMPRUNT",
+                "montant": 250000,
+                "quand": 1793379869557,
+                "detail": {
+                  "aRendre": 305000
+                }
+              }
+            ]
+          },
+          "contract": null,
+          "craft": {
+            "xp": 0,
+            "busyUntil": 0,
+            "queueSlots": 0,
+            "queue": []
+          },
+          "buffs": [],
+          "vitality": 0,
+          "harvest": {
+            "ilusia": 1793452663433
+          },
+          "bosses": {},
+          "conquest": {},
+          "ship": {
+            "owned": true,
+            "classId": "sloop",
+            "name": null,
+            "storageCapacity": 50,
+            "storageItems": [],
+            "hull": 33,
+            "canons": [
+              "leger",
+              null
+            ],
+            "pieces": {
+              "voile": null,
+              "gouvernail": null,
+              "coque": null,
+              "cale": null,
+              "canon": null,
+              "ancre": null
+            }
+          },
+          "discoveredLocations": [
+            "ilusia",
+            "ohara"
+          ],
+          "discoveredSubmaps": [],
+          "currentLocationId": "ohara",
+          "adventure": {
+            "chapterId": "east-blue-departure",
+            "stage": 0,
+            "flags": {}
+          },
+          "factionQuest": {
+            "chapter": 0,
+            "completed": [],
+            "fouilles": [
+              "ilusia"
+            ]
+          },
+          "caracsVersion": 2,
+          "caracteristiques": {
+            "force": 0,
+            "intelligence": 0,
+            "perception": 20,
+            "agilite": 4,
+            "constitution": 0,
+            "endurance": 8,
+            "resistance": 4,
+            "vitesse": 2,
+            "volonte": 2,
+            "sagesse": 0,
+            "invocation": 0,
+            "glyphes": 0
+          },
+          "repartitionChoisie": false,
+          "ancienneRepartition": null,
+          "resetGratuit": true,
+          "resetsOfferts": 0,
+          "annonceDesCaracteristiques": false,
+          "tachesDuJour": {
+            "jour": "2026-11-02",
+            "reclamees": [],
+            "bonus": false,
+            "niveau": 5,
+            "faction": "PIRATE",
+            "ids": [
+              "recoltes",
+              "betes",
+              "combats"
+            ],
+            "relances": 0
+          },
+          "affairesDuJour": {
+            "creneau": "2026-11-02#0",
+            "rang": 0
+          },
+          "coffresDuHub": {
+            "victoiresDuJour": {
+              "jour": "2026-11-02",
+              "n": 2
+            },
+            "palierAtteint": 0,
+            "titres": [],
+            "titreActif": null
+          },
+          "compteurs": {
+            "ventes-au-comptoir": 19,
+            "combats-gagnes": 35,
+            "betes-abattues": 71,
+            "recoltes": 1,
+            "poissons-peches": 1,
+            "etapes-de-quete": 12,
+            "carreaux-marins": 21,
+            "traversees": 7,
+            "combats-en-mer": 1
+          },
+          "compteursDuJour": {
+            "jour": "2026-11-02",
+            "valeurs": {
+              "combats-gagnes": 25,
+              "betes-abattues": 57,
+              "traversees": 1
+            }
+          },
+          "equipageDepuis": 1793379912664,
+          "combatLibreA": 1793580723983,
+          "currentHp": 338,
+          "hpVitality": 0,
+          "encyclopedieRemboursee": true,
+          "connaissances": {
+            "67d5b436-608b-4faa-b1eb-e952d7b0b9c9": 1793403559684
+          },
+          "farm": {
+            "islandId": "ohara",
+            "count": 8,
+            "at": 1793588303869
+          },
+          "seaJournal": {
+            "discoveries": {
+              "west:1:1": true,
+              "west:1:0": true,
+              "west:2:0": true,
+              "west:2:1": true,
+              "west:3:1": true,
+              "west:4:1": true,
+              "west:5:1": true,
+              "west:2:2": true,
+              "west:3:2": true,
+              "west:4:2": true,
+              "west:5:2": true,
+              "west:5:3": true,
+              "west:3:0": true,
+              "west:2:3": true,
+              "west:0:0": true,
+              "west:0:1": true,
+              "west:0:2": true,
+              "west:4:0": true,
+              "west:5:0": true,
+              "west:4:3": true,
+              "west:3:3": true
+            },
+            "bottleDays": {},
+            "huntDays": {},
+            "mission": null
+          },
+          "sideQuests": {
+            "active": null,
+            "completed": [],
+            "fightCleared": [],
+            "flags": {},
+            "huntProgress": {},
+            "actives": [],
+            "enCours": {}
+          },
+          "halloween": {
+            "cranes": 21
+          },
+          "dreamCounters": {
+            "fishCaught": 1
+          },
+          "fishing": {
+            "lastAt": 1793569586680,
+            "count": 1
+          },
+          "campaign": {
+            "stage": 132,
+            "flags": {},
+            "parcours": "west",
+            "accomplies": 13,
+            "dernier": "pw2-severin"
+          },
+          "atSea": null,
+          "establishedRoutes": [
+            "ilusia>ohara"
+          ],
+          "visitedIslands": [
+            "ilusia",
+            "ohara"
+          ],
+          "logPose": null,
+          "pendingBattle": null,
+          "succes": {
+            "obtenus": [
+              "niveau-5",
+              "combats-10",
+              "berrys-50k"
+            ],
+            "affiche": null
+          },
+          "lastHitAt": 1793569443958,
+          "seaSpoils": {
+            "sea-west-4-3-pnj-0": 1793569330341,
+            "sea-west-4-3-baril-3": 1793569441611,
+            "sea-west-3-3-banc-0": 1793569586680
+          },
+          "followedObjective": "CAMPAIGN",
+          "appearanceService": {
+            "gratuit": false,
+            "permanent": false,
+            "maneMane": false
+          },
+          "treasureHunt": null,
+          "hakiCouleurs": {},
+          "fruit": null,
+          "fruits": [],
+          "competencesUniques": [],
+          "sealedFruits": [],
+          "holdFruits": [],
+          "sealedFruit": null,
+          "uniqueSwords": [],
+          "territory": null,
+          "territories": [],
+          "crewAboard": 0,
+          "crew": {
+            "id": "32ed7ee6-4ce9-4fae-a338-4335f90faf37",
+            "name": "Violet",
+            "marine": false,
+            "captainId": "b6cf3ea4-ec36-4009-9d45-e270fe45f1f0",
+            "captain": false,
+            "flag": {
+              "v": 2,
+              "fond": 1,
+              "calques": [
+                [
+                  "pilule",
+                  75,
+                  72,
+                  76,
+                  14,
+                  32,
+                  20,
+                  100,
+                  0
+                ],
+                [
+                  "pilule",
+                  75,
+                  72,
+                  76,
+                  14,
+                  328,
+                  20,
+                  100,
+                  0
+                ],
+                [
+                  "cercle",
+                  75,
+                  42,
+                  46,
+                  42,
+                  0,
+                  20,
+                  100,
+                  0
+                ],
+                [
+                  "carre-arrondi",
+                  75,
+                  60,
+                  26,
+                  20,
+                  0,
+                  20,
+                  100,
+                  0
+                ],
+                [
+                  "cercle",
+                  66,
+                  43,
+                  12,
+                  13,
+                  0,
+                  1,
+                  100,
+                  0
+                ],
+                [
+                  "cercle",
+                  84,
+                  43,
+                  12,
+                  13,
+                  0,
+                  1,
+                  100,
+                  0
+                ],
+                [
+                  "triangle",
+                  75,
+                  54,
+                  7,
+                  7,
+                  0,
+                  1,
+                  100,
+                  0
+                ]
+              ]
+            },
+            "rankId": "MATELOT",
+            "title": "Matelot de Violet",
+            "rights": [
+              "EMBARQUER",
+              "RENFORT"
+            ]
+          }
+        }
+      ]
+    }
+  }
+]

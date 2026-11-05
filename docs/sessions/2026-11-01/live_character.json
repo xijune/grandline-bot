@@ -1,0 +1,422 @@
+{
+  "id": "37762d71-bf5c-48ec-8092-de390221be4e",
+  "name": "Bukima",
+  "epithet": null,
+  "titre": null,
+  "faction": "PIRATE",
+  "race": "LUNARIA",
+  "aspiration": "TIREUR",
+  "originSea": "WEST_BLUE",
+  "mapId": "ilusia",
+  "x": 125,
+  "y": 44,
+  "level": 3,
+  "xp": 325,
+  "berries": 1490,
+  "bounty": 127,
+  "appelDeLaPrime": null,
+  "hunted": null,
+  "marineRank": "RECRUE",
+  "marineRankName": "Recrue",
+  "successorId": null,
+  "dead": false,
+  "nameChange": null,
+  "renameRequired": false,
+  "freeFightAt": 1793389963593,
+  "deadAt": null,
+  "deadBy": null,
+  "deadCircumstance": null,
+  "crossGuild": 0,
+  "headPrice": 127,
+  "stats": {
+    "force": 10,
+    "vitesse": 8,
+    "resistance": 14,
+    "intelligence": 10,
+    "perception": 18,
+    "volonte": 14,
+    "endurance": 20
+  },
+  "haki": {
+    "observation": {
+      "unlocked": false,
+      "level": 0,
+      "xp": 408
+    },
+    "armament": {
+      "unlocked": false,
+      "level": 0,
+      "xp": 408
+    },
+    "conqueror": {
+      "unlocked": false,
+      "level": 0,
+      "xp": 0
+    }
+  },
+  "zoanForme": "humaine",
+  "zoanFormeAt": 0,
+  "inventory": {
+    "bagCapacity": 24,
+    "bonusCapacity": 0,
+    "fruitCapacity": 0,
+    "items": [
+      {
+        "id": "slingshot",
+        "name": "Lance-pierre renforcé",
+        "quantity": 1
+      },
+      {
+        "id": "viande-de-gibier",
+        "name": "Viande de gibier",
+        "quantity": 9
+      },
+      {
+        "id": "peau-tannee",
+        "name": "Peau tannée",
+        "quantity": 4
+      },
+      {
+        "id": "minerai-fer",
+        "name": "Minerai de fer",
+        "quantity": 1
+      },
+      {
+        "id": "ble",
+        "name": "Blé",
+        "quantity": 2
+      },
+      {
+        "id": "plumes",
+        "name": "Plumes",
+        "quantity": 22
+      },
+      {
+        "id": "bois-brut",
+        "name": "Bois brut",
+        "quantity": 1
+      },
+      {
+        "id": "sel-marin",
+        "name": "Sel marin",
+        "quantity": 1
+      },
+      {
+        "id": "algue-marine",
+        "name": "Algue marine",
+        "quantity": 2
+      },
+      {
+        "id": "poisson-commun",
+        "name": "Poisson de port",
+        "quantity": 1
+      },
+      {
+        "id": "baies-sauvages",
+        "name": "Baies sauvages",
+        "quantity": 1
+      },
+      {
+        "id": "ration",
+        "name": "Ration",
+        "quantity": 5
+      },
+      {
+        "id": "caisse-renforcee",
+        "name": "Caisse renforcée",
+        "quantity": 1
+      }
+    ]
+  },
+  "equipment": {
+    "chapeau": null,
+    "visage": null,
+    "collier": null,
+    "arme": "slingshot",
+    "arme-secondaire": null,
+    "armure": null,
+    "gants": null,
+    "bague-gauche": null,
+    "bague-droite": null,
+    "bottes": null,
+    "ceinture": null,
+    "accessoire": null,
+    "arme-tertiaire": null,
+    "pose": null,
+    "denden": null
+  },
+  "upgrades": {},
+  "mastery": {
+    "tir-1": 46.2,
+    "weapon-shot-quickdraw": 2.8
+  },
+  "bank": {
+    "balance": 0,
+    "lastInterestAt": 1793379869557,
+    "loan": {
+      "principal": 250000,
+      "amount": 305000,
+      "dueAt": 1793639069557
+    },
+    "journal": [
+      {
+        "type": "EMPRUNT",
+        "montant": 250000,
+        "quand": 1793379869557,
+        "detail": {
+          "aRendre": 305000
+        }
+      }
+    ]
+  },
+  "contract": null,
+  "craft": {
+    "xp": 0,
+    "busyUntil": 0,
+    "queueSlots": 0,
+    "queue": []
+  },
+  "buffs": [],
+  "vitality": 50,
+  "harvest": {
+    "ilusia": 1793452663433
+  },
+  "bosses": {},
+  "conquest": {},
+  "ship": {
+    "owned": false,
+    "classId": null,
+    "name": null,
+    "storageCapacity": 0,
+    "storageItems": [],
+    "hull": 100,
+    "canons": []
+  },
+  "discoveredLocations": [
+    "ilusia"
+  ],
+  "discoveredSubmaps": [],
+  "currentLocationId": "ilusia",
+  "adventure": {
+    "chapterId": "east-blue-departure",
+    "stage": 0,
+    "flags": {}
+  },
+  "factionQuest": {
+    "chapter": 0,
+    "completed": [],
+    "fouilles": [
+      "ilusia"
+    ]
+  },
+  "caracsVersion": 2,
+  "caracteristiques": {
+    "force": 0,
+    "intelligence": 0,
+    "perception": 5,
+    "agilite": 1,
+    "constitution": 0,
+    "endurance": 3,
+    "resistance": 1,
+    "vitesse": 0,
+    "volonte": 0,
+    "sagesse": 0,
+    "invocation": 0,
+    "glyphes": 0
+  },
+  "repartitionChoisie": false,
+  "ancienneRepartition": null,
+  "resetGratuit": true,
+  "resetsOfferts": 0,
+  "annonceDesCaracteristiques": false,
+  "tachesDuJour": {
+    "jour": "2026-10-31",
+    "reclamees": [
+      "combats"
+    ],
+    "bonus": false,
+    "niveau": 2,
+    "faction": "PIRATE",
+    "ids": [
+      "combats",
+      "peche",
+      "quetes"
+    ],
+    "relances": 0
+  },
+  "affairesDuJour": {
+    "creneau": "2026-10-31#1",
+    "rang": 0
+  },
+  "coffresDuHub": {
+    "victoiresDuJour": {
+      "jour": "2026-10-31",
+      "n": 1
+    },
+    "palierAtteint": 0,
+    "titres": [],
+    "titreActif": null
+  },
+  "compteurs": {
+    "ventes-au-comptoir": 7,
+    "combats-gagnes": 8,
+    "betes-abattues": 13,
+    "recoltes": 1,
+    "poissons-peches": 1
+  },
+  "compteursDuJour": {
+    "jour": "2026-10-31",
+    "valeurs": {
+      "combats-gagnes": 8,
+      "betes-abattues": 13,
+      "recoltes": 1,
+      "poissons-peches": 1
+    }
+  },
+  "equipageDepuis": 1793379912664,
+  "combatLibreA": 1793389963593,
+  "currentHp": 203,
+  "hpVitality": 50,
+  "encyclopedieRemboursee": true,
+  "connaissances": {
+    "67d5b436-608b-4faa-b1eb-e952d7b0b9c9": 1793403559684
+  },
+  "farm": {
+    "islandId": "ilusia",
+    "count": 1,
+    "at": 1793448316981
+  },
+  "seaJournal": {
+    "discoveries": {},
+    "bottleDays": {},
+    "huntDays": {},
+    "mission": null
+  },
+  "sideQuests": {
+    "active": null,
+    "completed": [],
+    "fightCleared": [],
+    "flags": {},
+    "huntProgress": {},
+    "actives": [],
+    "enCours": {}
+  },
+  "halloween": {
+    "cranes": 21
+  },
+  "dreamCounters": {
+    "fishCaught": 1
+  },
+  "fishing": {
+    "lastAt": 1793453228355,
+    "count": 1
+  },
+  "treasureHunt": null,
+  "hakiCouleurs": {},
+  "fruit": null,
+  "fruits": [],
+  "competencesUniques": [],
+  "sealedFruits": [],
+  "holdFruits": [],
+  "sealedFruit": null,
+  "uniqueSwords": [],
+  "territory": null,
+  "territories": [],
+  "crewAboard": 0,
+  "crew": {
+    "id": "32ed7ee6-4ce9-4fae-a338-4335f90faf37",
+    "name": "Violet",
+    "marine": false,
+    "captainId": "b6cf3ea4-ec36-4009-9d45-e270fe45f1f0",
+    "captain": false,
+    "flag": {
+      "v": 2,
+      "fond": 1,
+      "calques": [
+        [
+          "pilule",
+          75,
+          72,
+          76,
+          14,
+          32,
+          20,
+          100,
+          0
+        ],
+        [
+          "pilule",
+          75,
+          72,
+          76,
+          14,
+          328,
+          20,
+          100,
+          0
+        ],
+        [
+          "cercle",
+          75,
+          42,
+          46,
+          42,
+          0,
+          20,
+          100,
+          0
+        ],
+        [
+          "carre-arrondi",
+          75,
+          60,
+          26,
+          20,
+          0,
+          20,
+          100,
+          0
+        ],
+        [
+          "cercle",
+          66,
+          43,
+          12,
+          13,
+          0,
+          1,
+          100,
+          0
+        ],
+        [
+          "cercle",
+          84,
+          43,
+          12,
+          13,
+          0,
+          1,
+          100,
+          0
+        ],
+        [
+          "triangle",
+          75,
+          54,
+          7,
+          7,
+          0,
+          1,
+          100,
+          0
+        ]
+      ]
+    },
+    "rankId": "MATELOT",
+    "title": "Matelot de Violet",
+    "rights": [
+      "EMBARQUER",
+      "RENFORT"
+    ]
+  }
+}

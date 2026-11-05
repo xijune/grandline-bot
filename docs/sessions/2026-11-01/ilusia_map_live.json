@@ -1,0 +1,113 @@
+{
+  "mapId": "ilusia",
+  "mapSize": {
+    "width": 160,
+    "height": 160
+  },
+  "spawn": {
+    "x": 61,
+    "y": 85
+  },
+  "dock": {
+    "id": "quai0",
+    "cells": [
+      {
+        "x": 104,
+        "y": 139
+      },
+      {
+        "x": 104,
+        "y": 140
+      },
+      {
+        "x": 104,
+        "y": 141
+      },
+      {
+        "x": 104,
+        "y": 142
+      },
+      {
+        "x": 104,
+        "y": 143
+      },
+      {
+        "x": 104,
+        "y": 144
+      }
+    ],
+    "origin": {
+      "x": 104,
+      "y": 138
+    }
+  },
+  "npcs": [
+    {
+      "id": "npc-lin-la-voyageuse",
+      "x": 79,
+      "y": 92,
+      "role": "Voyageuse revenue du Pays des Fleurs",
+      "quest": "prologue parler"
+    },
+    {
+      "id": "npc-ganza-le-garde",
+      "x": 99,
+      "y": 65,
+      "role": "Garde du poste du Gouvernement"
+    },
+    {
+      "id": "npc-aliss-la-guide",
+      "x": 120,
+      "y": 92,
+      "role": "Guide de la forêt"
+    },
+    {
+      "id": "npc-berthe-la-poissonniere",
+      "x": 99,
+      "y": 92,
+      "role": "Poissonnière du quai"
+    },
+    {
+      "id": "npc-pip-le-crieur",
+      "x": 59,
+      "y": 66,
+      "role": "Crieur de la gazette royale"
+    },
+    {
+      "id": "npc-soeur-agathe-l-herboriste",
+      "x": 59,
+      "y": 93,
+      "role": "Herboriste du faubourg"
+    },
+    {
+      "id": "npc-maitre-oscar-l-armurier",
+      "x": 119,
+      "y": 65,
+      "role": "Armurier du roi"
+    },
+    {
+      "id": "npc-gaspard-l-intendant",
+      "x": 39,
+      "y": 93,
+      "role": "Intendant de la maison Hauteclaire"
+    },
+    {
+      "id": "quete-aldine-verre",
+      "x": 59,
+      "y": 120,
+      "role": "Institutrice révoquée"
+    },
+    {
+      "id": "quete-boze-l-imprimeur",
+      "x": 79,
+      "y": 65,
+      "role": "Personnage de quête"
+    }
+  ],
+  "notes": {
+    "campaignTalk": "POST .../campaign/talk {npc} → CONFLIT si trop loin (« Approche-toi d'abord »)",
+    "negoce": "nécessite auPonton / dock cells",
+    "barquePrice": 3500,
+    "berriesAtTest": 1266
+  }
+}

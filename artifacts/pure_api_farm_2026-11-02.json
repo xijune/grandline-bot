@@ -1,0 +1,42 @@
+{
+  "wins": 5,
+  "hpDeltas": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "ms": 38666,
+  "results": [
+    {
+      "pack": "ohara-groupe-30-g55",
+      "winner": "ALLIE",
+      "hpDelta": 0,
+      "logs": "Tir pr\u00e9cis d=6; AP0; APPROACH; Tir pr\u00e9cis d=5; WIN"
+    },
+    {
+      "pack": "ohara-groupe-8-g64",
+      "winner": "ALLIE",
+      "hpDelta": 0
+    },
+    {
+      "pack": "ohara-groupe-42-g60",
+      "winner": "ALLIE",
+      "hpDelta": 0,
+      "note": "KITE 3\u21926"
+    },
+    {
+      "pack": "ohara-groupe-43-g59",
+      "winner": "ALLIE",
+      "hpDelta": 0,
+      "note": "KITE 3\u21926"
+    },
+    {
+      "pack": "ohara-groupe-45-g47",
+      "winner": "ALLIE",
+      "hpDelta": 0,
+      "note": "KITE 4\u21926"
+    }
+  ]
+}

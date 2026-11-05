@@ -1,0 +1,150 @@
+{
+  "date": "2026-10-31",
+  "battleId": "0eaf324f-82db-407a-8dbd-6ed3ff09350f",
+  "kind": "FAUNE",
+  "player": {
+    "name": "Bukima",
+    "level": 2,
+    "aspiration": "TIREUR",
+    "race": "LUNARIA",
+    "hp": 184,
+    "maxHp": 237,
+    "caracs": {
+      "pa": 6,
+      "pm": 3,
+      "initiative": 32,
+      "bouclier": 0,
+      "resistances": {
+        "generale": 0.08,
+        "TRANCHANT": 0,
+        "CONTONDANT": 0,
+        "TIR": 0,
+        "ELEMENTAIRE": 0,
+        "SONIQUE": 0,
+        "critiques": 0,
+        "alterations": 0
+      },
+      "esquive": 0,
+      "tacle": 0
+    },
+    "weaponName": "Lance-pierre renforcé",
+    "armeDeTir": true,
+    "techniques": [
+      {
+        "id": "tir-1",
+        "name": "Tir précis",
+        "type": "TIR",
+        "origin": "ASPIRATION",
+        "power": 1.2,
+        "pa": 2,
+        "range": 6,
+        "shape": "single"
+      },
+      {
+        "id": "race-lunaria-flame",
+        "name": "Flamme dorsale",
+        "type": "ELEMENTAIRE",
+        "origin": "RACE",
+        "power": 1.35,
+        "pa": 4
+      },
+      {
+        "id": "weapon-shot-quickdraw",
+        "name": "Dégainé précis",
+        "type": "TIR",
+        "origin": "WEAPON",
+        "power": 1.25,
+        "pa": 3,
+        "range": 4,
+        "shape": "single"
+      }
+    ]
+  },
+  "enemy": {
+    "name": "Rat des chantiers",
+    "level": 1,
+    "hp": 87,
+    "maxHp": 87,
+    "id": "quest-enemy"
+  },
+  "estimates_vs_rat": {
+    "attack": {
+      "min": 33,
+      "max": 41
+    },
+    "tir-1": {
+      "min": 40,
+      "max": 49,
+      "critMin": 64,
+      "critMax": 78
+    },
+    "race-lunaria-flame": {
+      "min": 22,
+      "max": 27,
+      "critMin": 35,
+      "critMax": 43
+    },
+    "weapon-shot-quickdraw": {
+      "min": 48,
+      "max": 58,
+      "critMin": 77,
+      "critMax": 93
+    }
+  },
+  "tactics": {
+    "ap": 6,
+    "mp": 3,
+    "secondesParTour": 30,
+    "dist_manhattan_start": 10
+  },
+  "mastery_example": {
+    "rank": 1,
+    "uses": 0,
+    "next": 150,
+    "branche": "PORTEE"
+  },
+  "defeat_berry_loss": -5,
+  "notes": "Sans déplacement en portée, aucun hit landé. 2x Dégainé (~50) suffirait à one-shot le rat 87 HP.",
+  "enemy_full": {
+    "name": "Rat des chantiers",
+    "level": 1,
+    "faune": "rat",
+    "hp": 87,
+    "maxHp": 87,
+    "caracs": {
+      "pa": 6,
+      "pm": 3,
+      "initiative": 25,
+      "resistances": {
+        "generale": 0
+      },
+      "esquive": 0,
+      "tacle": 0
+    },
+    "techniques": [
+      {
+        "id": "com-1",
+        "name": "Poing de fer",
+        "type": "CONTONDANT",
+        "origin": "ASPIRATION",
+        "power": 1.3,
+        "pa": 2,
+        "range": 1,
+        "shape": "single"
+      }
+    ]
+  },
+  "api": {
+    "battles_start": "POST https://api.grandline-online.fr/api/battles/start => 200 (full combatState)",
+    "battles_engage": "POST .../engage => 200",
+    "battles_move_from_tool": "Failed to fetch (isolation) ; relative host /api/battles/:id/move => 405",
+    "note": "Hook window.fetch in-page captures game traffic successfully"
+  },
+  "defeat_berry_losses": [
+    -7,
+    -6,
+    -5,
+    -5
+  ],
+  "berries_after_session": 26
+}
