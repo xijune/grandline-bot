@@ -581,6 +581,40 @@
 
       <!-- Right: Presets & Active Bots -->
       <section>
+        <!-- Panel Injection Rapide GLBot v1.4.0 -->
+        <div class="panel" style="border: 1px solid rgba(56, 189, 248, 0.4); background: linear-gradient(180deg, rgba(14, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.6) 100%);">
+          <div class="panel-header">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <span style="font-size:1.1rem;">⚡</span>
+              <span class="panel-title" style="color:#38bdf8;">Bot In-Game F12 (Combat 100% API + Mini-HUD)</span>
+              <span class="badge" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid rgba(56,189,248,0.3);">v1.4.0</span>
+            </div>
+            <span class="status running">Optimisé Full API</span>
+          </div>
+          <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;line-height:1.5;">
+            Script officiel ultra-rapide inspiré de <code>gl_api_farm.js</code>. Exécute tous les combats, le placement et les repos en <strong>100% requêtes API pures</strong> sans lag ni clic DOM.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:10px;margin-bottom:14px;font-size:0.8rem;">
+            <div style="background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:6px;border:1px solid var(--border);">
+              <span style="color:#38bdf8;font-weight:700;">⚔️ Combats API</span> : Bypass placement & actions instantanées
+            </div>
+            <div style="background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:6px;border:1px solid var(--border);">
+              <span style="color:#4ade80;font-weight:700;">💤 Repos conforme</span> : Navire (CD 10m) ou Belle Étoile (sans CD)
+            </div>
+            <div style="background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:6px;border:1px solid var(--border);">
+              <span style="color:#facc15;font-weight:700;">🧭 Rations préservées</span> : Réservées au voyage maritime
+            </div>
+            <div style="background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:6px;border:1px solid var(--border);">
+              <span style="color:#c084fc;font-weight:700;">🖥️ Mini-HUD In-Game</span> : Touche <strong>F2</strong> pour masquer/afficher
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="copyGlbotScript()">📋 Copier le code complet v1.4.0</button>
+            <button class="btn btn-ghost" onclick="copyGlbotOneLiner()">⚡ Copier le chargeur 1-ligne</button>
+            <a href="/src/inject/glbot.js" target="_blank" class="btn btn-ghost" style="text-decoration:none;">🔗 Voir le fichier source</a>
+          </div>
+        </div>
+
         <div class="panel">
           <div class="panel-header">
             <span class="panel-title">Lancer une automatisation</span>
@@ -1493,6 +1527,28 @@ function esc(s) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+async function copyGlbotScript() {
+  try {
+    const res = await fetch("/src/inject/glbot.js");
+    if (!res.ok) throw new Error("Impossible de charger /src/inject/glbot.js (code " + res.status + ")");
+    const text = await res.text();
+    await navigator.clipboard.writeText(text);
+    toast("✅ Script GLBot v1.4.0 copié ! Ouvre la console F12 en jeu et colle-le (Ctrl+V puis Entrée).", "ok");
+  } catch (err) {
+    toast("Erreur lors de la copie : " + err.message, "error");
+  }
+}
+
+async function copyGlbotOneLiner() {
+  const oneLiner = `fetch("${location.origin}/src/inject/glbot.js").then(r=>r.text()).then(eval);`;
+  try {
+    await navigator.clipboard.writeText(oneLiner);
+    toast("⚡ Commande de chargement 1-ligne copiée ! Colle-la en console F12.", "ok");
+  } catch (err) {
+    toast("Erreur : " + err.message, "error");
+  }
 }
 
 // ---------- Initialization ----------

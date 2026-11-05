@@ -1,0 +1,378 @@
+{
+  "timestamp": "2026-11-05T14:59:53.236Z",
+  "character": {
+    "id": "ba7482a8-7fe1-43c4-abc0-05e7106516b7",
+    "name": "Mamiko",
+    "level": 25,
+    "aspiration": "TIREUR",
+    "currentHp": 843,
+    "vitality": 0,
+    "berries": 19588,
+    "bounty": 9010,
+    "stats": {
+      "force": 10,
+      "vitesse": 10,
+      "resistance": 12,
+      "intelligence": 10,
+      "perception": 18,
+      "volonte": 10,
+      "endurance": 20
+    },
+    "equipped": {
+      "chapeau": null,
+      "visage": null,
+      "collier": null,
+      "arme": "slingshot",
+      "arme-secondaire": "fronde-de-marin",
+      "armure": "leather-coat",
+      "gants": null,
+      "bague-gauche": null,
+      "bague-droite": null,
+      "bottes": null,
+      "ceinture": null,
+      "accessoire": "kit-du-cartographe",
+      "arme-tertiaire": null,
+      "pose": null,
+      "denden": null
+    },
+    "statusEffects": [],
+    "position": {
+      "x": 89,
+      "y": 82
+    }
+  },
+  "inventoryAnalysis": [
+    {
+      "id": "ration",
+      "name": "Ration",
+      "quantity": 10,
+      "rawProperties": {
+        "id": "ration",
+        "name": "Ration",
+        "quantity": 10
+      }
+    },
+    {
+      "id": "repair-kit",
+      "name": "Kit de réparation",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "repair-kit",
+        "name": "Kit de réparation",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "slingshot",
+      "name": "Lance-pierre renforcé",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "slingshot",
+        "name": "Lance-pierre renforcé",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "kit-du-cartographe",
+      "name": "Kit du cartographe",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "kit-du-cartographe",
+        "name": "Kit du cartographe",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "whetstone",
+      "name": "Pierre à aiguiser",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "whetstone",
+        "name": "Pierre à aiguiser",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "grappin",
+      "name": "Grappin d’abordage",
+      "quantity": 2,
+      "rawProperties": {
+        "id": "grappin",
+        "name": "Grappin d’abordage",
+        "quantity": 2
+      }
+    },
+    {
+      "id": "leather-coat",
+      "name": "Manteau de cuir",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "leather-coat",
+        "name": "Manteau de cuir",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "fronde-de-marin",
+      "name": "Fronde de marin",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "fronde-de-marin",
+        "name": "Fronde de marin",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "barre-de-cabestan",
+      "name": "Barre de cabestan",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "barre-de-cabestan",
+        "name": "Barre de cabestan",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "bois-de-fer",
+      "name": "Bois de fer",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "bois-de-fer",
+        "name": "Bois de fer",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "masque-de-carnaval",
+      "name": "Masque de carnaval",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "masque-de-carnaval",
+        "name": "Masque de carnaval",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "bague-de-corail-noir",
+      "name": "Bague de corail noir",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "bague-de-corail-noir",
+        "name": "Bague de corail noir",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "encre-d-ohara",
+      "name": "Encre d’Ohara",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "encre-d-ohara",
+        "name": "Encre d’Ohara",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "boulet-fonte",
+      "name": "Boulet de fonte",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "boulet-fonte",
+        "name": "Boulet de fonte",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "plume-de-roc",
+      "name": "Plume de roc",
+      "quantity": 3,
+      "rawProperties": {
+        "id": "plume-de-roc",
+        "name": "Plume de roc",
+        "quantity": 3
+      }
+    },
+    {
+      "id": "bois-brut",
+      "name": "Bois brut",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "bois-brut",
+        "name": "Bois brut",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "fil-d-araignee-geante",
+      "name": "Fil d’araignée géante",
+      "quantity": 1,
+      "rawProperties": {
+        "id": "fil-d-araignee-geante",
+        "name": "Fil d’araignée géante",
+        "quantity": 1
+      }
+    },
+    {
+      "id": "peau-tannee",
+      "name": "Peau tannée",
+      "quantity": 2,
+      "rawProperties": {
+        "id": "peau-tannee",
+        "name": "Peau tannée",
+        "quantity": 2
+      }
+    },
+    {
+      "id": "viande-de-gibier",
+      "name": "Viande de gibier",
+      "quantity": 4,
+      "rawProperties": {
+        "id": "viande-de-gibier",
+        "name": "Viande de gibier",
+        "quantity": 4
+      }
+    }
+  ],
+  "gameStaticCatalog": {},
+  "healingAndRestMechanics": {
+    "availableRestButtonsInDom": [],
+    "restPanelTextSnapshot": "",
+    "knownRestCooldowns": {
+      "navireAvailable": true
+    },
+    "healingMethodsFoundInScene": [],
+    "playerVitalityRaw": 0,
+    "playerHpVitalityRaw": 0
+  },
+  "shipAndTravelMechanics": {
+    "owned": true,
+    "classId": "barque",
+    "name": "La Mouette grise",
+    "hull": 95,
+    "storageCapacity": 20,
+    "storageItems": [],
+    "canons": [],
+    "travelData": null
+  },
+  "combatAndShooterMechanics": {
+    "techniquesKnown": [],
+    "learnedSkills": [],
+    "hasRangedWeapon": false,
+    "weaponDetails": null,
+    "combatMethodsFoundInScene": [
+      "onFaunaAttack",
+      "onDonjonCombat",
+      "objectiveTargetProvider",
+      "combatSansEcran"
+    ],
+    "tacticsProperties": []
+  },
+  "clientSceneOverview": {
+    "sceneKeys": [
+      "sys",
+      "game",
+      "anims",
+      "cache",
+      "plugins",
+      "registry",
+      "scale",
+      "sound",
+      "textures",
+      "renderer",
+      "events",
+      "cameras",
+      "make",
+      "add",
+      "scene",
+      "children",
+      "time",
+      "data",
+      "input",
+      "load",
+      "tweens",
+      "lights",
+      "network",
+      "character",
+      "ficheDesRepères",
+      "mapData",
+      "entities",
+      "blocked",
+      "pendingRedirect",
+      "essaisPresence",
+      "movementRedirecting",
+      "onInteract",
+      "loadHalloween",
+      "onHalloweenPickupStart",
+      "onHalloweenPickup",
+      "onHalloweenChest",
+      "onHalloweenBoss",
+      "onOuvrirFonction",
+      "onChallengePlayer",
+      "onShowPlayerCard",
+      "getNecroWorld",
+      "chargerLesConnaissances",
+      "onWhisper",
+      "onDeathDuelPlayer",
+      "onDeclareHunt",
+      "onImpelRecord",
+      "onAssaultPlayer",
+      "onDemandBribe",
+      "onSendToPrison",
+      "onDemandCession",
+      "onVegaExtract",
+      "onFreeFromScaffold",
+      "onTradePlayer",
+      "onDicePlayer",
+      "onBattleMarker",
+      "onDock",
+      "onQuitterCote",
+      "navireClasse",
+      "navireAllure",
+      "navirePavillon",
+      "peutPiloterLaCote",
+      "arriveeParMer",
+      "coteDArrivee",
+      "coteDeSortie",
+      "onEmbark",
+      "onHouseDoor",
+      "onHouseAction",
+      "onAgencer",
+      "onAgencementChange",
+      "onHarvest",
+      "onPickup",
+      "onDig",
+      "onIndiceDuTresor",
+      "loadChests",
+      "loadRemains",
+      "onFaunaAttack",
+      "onEnnemiDeQuete",
+      "onMaitreIle",
+      "loadQuestObjectives",
+      "revisionObjectifs"
+    ],
+    "networkKeys": [
+      "socket",
+      "numeros",
+      "population",
+      "channels",
+      "characterId",
+      "closed",
+      "wake",
+      "visibilityListener",
+      "connectionState",
+      "carteRecue",
+      "fauna",
+      "initialPlayers",
+      "brumeEtat",
+      "wipePrevu",
+      "mapBattles",
+      "recoltes",
+      "groundDrops",
+      "visages",
+      "vraisNoms",
+      "needsRejoin"
+    ],
+    "systemsKeys": [],
+    "hasSocket": true
+  }
+}

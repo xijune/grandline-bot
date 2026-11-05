@@ -300,6 +300,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(ROOT, 'public')));
 app.use('/scripts', express.static(path.join(ROOT, 'scripts')));
+app.use('/src/inject', express.static(path.join(ROOT, 'src', 'inject')));
 
 // Root route
 app.get(['/', '/index.html'], (req, res) => {
